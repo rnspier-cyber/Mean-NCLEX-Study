@@ -2098,6 +2098,1266 @@ const masterDatabase = [
                 ]
             }
         ]
+    },
+{
+        id: "airway_trach",
+        scenario: "Your patient had a tracheostomy placed 12 hours ago. They suddenly have a violently aggressive coughing fit. You hear a popping sound, and the entire tracheostomy tube shoots out of their neck onto the floor.",
+        options: [
+            {
+                text: "Grab the sterile obturator, insert it into a new tube, and shove it back in.",
+                instructorComment: "You are blindly shoving a plastic tube into a fresh surgical wound that hasn't formed a tract yet. You are about to enter the false lumen.",
+                followUps: [
+                    { text: "Push harder when you meet resistance.", outcome: "death", rationale: "You shoved the tube directly into their subcutaneous tissue. When you hooked up the oxygen, you blew them up like a balloon. Massive subcutaneous emphysema and asphyxiation. Dead." },
+                    { text: "Force the ventilator tubing onto the misplaced trach.", outcome: "death", rationale: "You bypassed the lungs entirely. They suffocated while the vent alarmed. Tragic." },
+                    { text: "Realize it's not going in and pull it out.", outcome: "rehab", rationale: "You caused severe trauma to the stoma. The surgeon has to do an emergency revision in the OR. Months of airway rehab." }
+                ]
+            },
+            {
+                text: "Cover the stoma with a sterile dressing and ventilate over the mouth and nose with a BVM.",
+                instructorComment: "Textbook! A trach less than 72 hours old has no established tract. Do NOT try to reinsert it yourself. Bag them from the top down.",
+                followUps: [
+                    { text: "Call for the Rapid Response Team and the surgeon STAT.", outcome: "stability", rationale: "Perfect! You covered the hole so air wouldn't escape, bagged them from the mouth, and got the surgeon to safely re-establish the airway. Stability achieved!" },
+                    { text: "Leave the room to go find the surgeon.", outcome: "death", rationale: "You abandoned a patient without an airway. They suffered anoxic brain death in 4 minutes." },
+                    { text: "Bag them gently without covering the stoma.", outcome: "rehab", rationale: "The air just blew straight out of the hole in their neck. They got profoundly hypoxic before the team arrived. Severe brain injury." }
+                ]
+            },
+            {
+                text: "Pick the dirty trach off the floor and put it back in.",
+                instructorComment: "Are you genuinely trying to give them sepsis, or were you just raised in a barn?",
+                followUps: [
+                    { text: "Wipe it on your scrubs first.", outcome: "death", rationale: "You introduced MRSA, VRE, and floor dirt directly into their lungs while also forcing it into a false tissue tract. They died of massive septic shock." },
+                    { text: "Rinse it with tap water.", outcome: "death", rationale: "Tap water in the lungs causes massive infection, and you still missed the airway tract. Fatal asphyxiation." },
+                    { text: "Stop halfway and call for help.", outcome: "rehab", rationale: "You stopped before fully inserting the dirty tube, but the bacteria is there. They survive the asphyxiation but need a month of heavy IV antibiotics." }
+                ]
+            },
+            {
+                text: "Tape the stoma wide open and let them breathe room air.",
+                instructorComment: "The airway is swelling shut from the surgical trauma as we speak. Room air isn't going to cut it.",
+                followUps: [
+                    { text: "Chart that the patient self-decannulated.", outcome: "death", rationale: "The stoma collapsed and swelled shut. The patient suffocated while you were typing your legally incriminating note." },
+                    { text: "Give them a nasal cannula.", outcome: "death", rationale: "You put oxygen in their nose, but their trachea is disconnected from their upper airway. They choked to death." },
+                    { text: "Notice them turning blue and grab the Bag-Valve-Mask.", outcome: "rehab", rationale: "You finally bagged them, but the delay caused permanent hypoxic damage to their cerebral cortex. Rehab required." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "neuro_shock",
+        scenario: "A patient with a T2 spinal cord injury from a motorcycle crash yesterday suddenly has a blood pressure of 75/40 and a heart rate of 42. Their skin is warm, dry, and flushed.",
+        options: [
+            {
+                text: "Identify Neurogenic Shock and request IV Atropine, fluids, and Vasopressors.",
+                instructorComment: "Brilliant! The spinal cord injury severed the sympathetic nervous system. The parasympathetic system is running wild, causing massive vasodilation and bradycardia.",
+                followUps: [
+                    { text: "Administer the Atropine and start a Norepinephrine drip.", outcome: "stability", rationale: "Flawless critical care. Atropine fixes the bradycardia, fluids fill the tank, and Norepinephrine squeezes the vasodilated pipes. Stability!" },
+                    { text: "Push the fluids but hold the Vasopressors.", outcome: "rehab", rationale: "You filled the tank, but the pipes are still massively dilated. The BP remains low, causing acute kidney injury from hypoperfusion. Rehab." },
+                    { text: "Give Atropine but withhold fluids.", outcome: "death", rationale: "You fixed the heart rate, but they have no blood pressure because of the vasodilation. They code from cardiovascular collapse." }
+                ]
+            },
+            {
+                text: "Assume it is Septic Shock and draw blood cultures.",
+                instructorComment: "Septic shock has warm/flushed skin, but usually presents with TACHYCARDIA to compensate. The heart rate of 42 is the dead giveaway for Neurogenic Shock.",
+                followUps: [
+                    { text: "Administer broad-spectrum antibiotics.", outcome: "death", rationale: "Antibiotics do nothing to squeeze vasodilated blood vessels. The blood pressure hit 50/20 and the patient died of organ failure." },
+                    { text: "Wait for the culture results.", outcome: "death", rationale: "You waited 48 hours to treat a shock state. The patient died on day one." },
+                    { text: "Realize the HR is 42 and push Atropine.", outcome: "rehab", rationale: "You caught the bradycardia, but the delay in starting vasopressors caused severe hypoxic damage to the spinal cord. Permanent paralysis." }
+                ]
+            },
+            {
+                text: "Elevate the head of the bed to 90 degrees.",
+                instructorComment: "You are confusing this with Autonomic Dysreflexia (high BP, sweating). This is Neurogenic Shock (low BP). You just killed them.",
+                followUps: [
+                    { text: "Tell them to take deep breaths.", outcome: "death", rationale: "Gravity pulled all the remaining blood out of their brain. They passed out, seized, and died of cerebral anoxia." },
+                    { text: "Check their foley catheter for a kink.", outcome: "death", rationale: "Again, that's for Autonomic Dysreflexia! You are searching for a kinked tube while they die of massive hypovolemic shock." },
+                    { text: "Lay them flat immediately.", outcome: "rehab", rationale: "You realized your mistake and dropped the head, restoring some blood flow. They survive but require a prolonged ICU stay." }
+                ]
+            },
+            {
+                text: "Administer IV Labetalol.",
+                instructorComment: "Labetalol is a beta-blocker. It LOWERS heart rate and LOWERS blood pressure. You are giving a lethal injection to a patient in shock.",
+                followUps: [
+                    { text: "Push it fast.", outcome: "death", rationale: "You bottomed out their heart rate to 0. Flatline. Congratulations, you are an assassin." },
+                    { text: "Follow it with IV Nitroglycerin.", outcome: "death", rationale: "You gave a vasodilator to a patient dying of vasodilation. A truly spectacular failure of pharmacology." },
+                    { text: "Read the vial, panic, and throw it in the sharps bin.", outcome: "stability", rationale: "You didn't push it. You called the doctor instead, who ordered Levophed. You barely survived your own incompetence." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "gi_perforation",
+        scenario: "Two hours after a colonoscopy with polyp removal, the patient complains of sudden, excruciating abdominal pain that radiates to their left shoulder. Their abdomen is rigid and 'board-like' to the touch.",
+        options: [
+            {
+                text: "Identify a Bowel Perforation, keep NPO, and prep for immediate surgery.",
+                instructorComment: "Yes! The colonoscope poked a hole in the bowel. The rigid abdomen is peritonitis, and the shoulder pain is referred pain from free air hitting the diaphragm. Excellent.",
+                followUps: [
+                    { text: "Start two large-bore IVs and broad-spectrum antibiotics.", outcome: "stability", rationale: "Perfect! You anticipated the massive sepsis and hypovolemic shock. The surgeon patches the hole, patient survives intact. Stability!" },
+                    { text: "Give them a large glass of water while waiting for the OR.", outcome: "death", rationale: "You gave water to someone with a hole in their colon. The water poured directly into their abdominal cavity, causing fatal septic shock." },
+                    { text: "Administer a massive fleet enema to clean them out.", outcome: "death", rationale: "You pressure-washed their abdominal cavity with feces and enema fluid. They died a horrific, agonizing death." }
+                ]
+            },
+            {
+                text: "Tell them it's just gas pain from the procedure and encourage ambulation.",
+                instructorComment: "Gas pain causes cramping, not a rigid, board-like abdomen with shoulder pain. You are ignoring a surgical emergency.",
+                followUps: [
+                    { text: "Walk them down the hallway.", outcome: "death", rationale: "The ambulation pumped gallons of feces and bacteria out of the hole in their colon. They collapsed in the hallway from septic shock." },
+                    { text: "Give them Simethicone (Gas-X).", outcome: "death", rationale: "Gas-X doesn't fix a ruptured colon. The bacteria multiplied, the organs shut down, and they died." },
+                    { text: "Notice their BP dropping to 80/40 and call a Rapid Response.", outcome: "rehab", rationale: "You finally realized they were bleeding and septic. They need an emergency colostomy and months of rehab." }
+                ]
+            },
+            {
+                text: "Administer a PO laxative to help them clear the remaining barium.",
+                instructorComment: "They have a HOLE in their intestine. You just gave them a drug that forces the intestines to vigorously contract.",
+                followUps: [
+                    { text: "Wait for the laxative to work.", outcome: "death", rationale: "The violent peristalsis tore the small hole into a massive laceration. The peritoneal cavity flooded with stool. Fatal peritonitis." },
+                    { text: "Give them a suppository too.", outcome: "death", rationale: "You are actively trying to destroy their GI tract. They code from septic shock." },
+                    { text: "Stop them from drinking it at the last second.", outcome: "rehab", rationale: "You ripped the cup out of their hands. The surgeon still has to open them up, but you avoided total catastrophe. Rehab." }
+                ]
+            },
+            {
+                text: "Perform a deep, aggressive abdominal massage to relieve the pressure.",
+                instructorComment: "You are forcefully kneading an abdomen filled with free air, feces, and a torn colon. You are a menace.",
+                followUps: [
+                    { text: "Push down firmly on the rigid areas.", outcome: "death", rationale: "You literally squeezed stool out of the perforation like a tube of toothpaste into their sterile peritoneum. They died of massive sepsis." },
+                    { text: "Apply a tight abdominal binder.", outcome: "death", rationale: "The pressure from the binder forced the free air upward, crushing their diaphragm and lungs. They suffocated." },
+                    { text: "Stop when they scream in agony.", outcome: "rehab", rationale: "You caused immense pain and worsened the tear, but calling the surgeon saves their life. They require a temporary ostomy." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "pharm_tca",
+        scenario: "A patient arrives after intentionally swallowing a handful of Amitriptyline (a Tricyclic Antidepressant). They are incredibly lethargic, their mouth is bone-dry, and the EKG shows a dramatically widened QRS complex.",
+        options: [
+            {
+                text: "Administer IV Sodium Bicarbonate immediately.",
+                instructorComment: "Brilliant toxicology knowledge! TCAs block sodium channels in the heart, causing the wide QRS. Sodium Bicarbonate overcomes the blockade and alkalinizes the blood.",
+                followUps: [
+                    { text: "Monitor the EKG continuously for narrowing of the QRS.", outcome: "stability", rationale: "Textbook! The bicarb narrows the QRS, preventing the fatal arrhythmia. The patient survives the overdose and gets psychiatric help. Stability!" },
+                    { text: "Push IV Physostigmine next.", outcome: "death", rationale: "Physostigmine is the antidote for anticholinergic toxicity, BUT in TCA overdoses, it causes fatal asystole (heart stops)! You killed them." },
+                    { text: "Stop the Bicarb once the QRS looks normal.", outcome: "rehab", rationale: "TCA toxicity lasts for days. You stopped the drip too early, the QRS widened again, and they suffered a cardiac arrest. ICU rehab required." }
+                ]
+            },
+            {
+                text: "Push IV Flumazenil.",
+                instructorComment: "Flumazenil is the antidote for Benzodiazepines! Amitriptyline is a TCA. You are giving the wrong antidote.",
+                followUps: [
+                    { text: "Give a second dose when they don't wake up.", outcome: "death", rationale: "While you were playing with Benzo antidotes, the wide QRS devolved into Ventricular Tachycardia. The patient coded and died." },
+                    { text: "Check their pupils.", outcome: "death", rationale: "Their pupils are dilated, but they are dead. You missed the fatal cardiac arrhythmia entirely." },
+                    { text: "Realize the EKG is widening and push Bicarb.", outcome: "rehab", rationale: "You wasted time, but the Bicarb saves their life. The hypoxic brain injury from the brief V-Tach requires rehab." }
+                ]
+            },
+            {
+                text: "Administer IV Naloxone (Narcan).",
+                instructorComment: "Narcan is for OPIOIDS. TCAs are not opioids. You are doing absolutely nothing to fix the sodium channel blockade in their heart.",
+                followUps: [
+                    { text: "Push a massive dose of Narcan.", outcome: "death", rationale: "The Narcan did nothing. The heart block worsened, they went into Ventricular Fibrillation, and died." },
+                    { text: "Hook them up to a Narcan drip.", outcome: "death", rationale: "You hung a continuous drip of useless medication while their heart stopped beating. Malpractice." },
+                    { text: "Read the pill bottle and grab the Sodium Bicarbonate.", outcome: "stability", rationale: "You realized your mistake before the heart stopped. The Bicarb narrows the QRS. You barely scraped by." }
+                ]
+            },
+            {
+                text: "Give them Activated Charcoal and wait for it to pass.",
+                instructorComment: "Charcoal is great if they took the pills 30 minutes ago, but the widened QRS means the drug is already in their heart tissue! You need a systemic antidote.",
+                followUps: [
+                    { text: "Have them drink the charcoal quickly.", outcome: "death", rationale: "They are lethargic! They aspirated the black charcoal directly into their lungs, suffocated, and died." },
+                    { text: "Put it down an NG tube.", outcome: "death", rationale: "You got it in their stomach, but the drug already in their blood caused a fatal cardiac arrest while you were placing the tube." },
+                    { text: "Give Bicarb alongside the Charcoal.", outcome: "rehab", rationale: "You finally protected the heart, but the charcoal caused severe aspiration pneumonia due to their lethargy. Prolonged ventilator stay." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "pharm_phenytoin",
+        scenario: "Your patient is actively seizing (Status Epilepticus). The provider orders a loading dose of IV Phenytoin (Dilantin) 1000mg STAT.",
+        options: [
+            {
+                text: "Mix it in Normal Saline and administer it slowly (no faster than 50mg/min).",
+                instructorComment: "Perfect! Phenytoin precipitates (turns into crystals) in Dextrose, and pushing it faster than 50mg/min causes fatal arrhythmias and hypotension.",
+                followUps: [
+                    { text: "Monitor the EKG and blood pressure during the infusion.", outcome: "stability", rationale: "Textbook pharmacology! The slow infusion in saline safely stops the seizures without stopping the heart. Stability achieved!" },
+                    { text: "Speed the pump up to 150mg/min because they are still seizing.", outcome: "death", rationale: "You pushed it too fast! The propylene glycol in the mixture caused massive cardiovascular collapse and heart block. Dead." },
+                    { text: "Stop the infusion if they complain of burning.", outcome: "rehab", rationale: "Phenytoin is highly irritating to veins (Purple Glove Syndrome). You stopped it, but the seizures caused brain damage. Use a central line next time! Rehab." }
+                ]
+            },
+            {
+                text: "Mix it in D5W (Dextrose 5%) and push it as fast as possible.",
+                instructorComment: "You just broke two cardinal rules of Phenytoin. It crystallizes in sugar, and fast pushes stop the heart.",
+                followUps: [
+                    { text: "Push the cloudy, crystallized fluid into their vein.", outcome: "death", rationale: "You injected actual microscopic glass-like crystals into their bloodstream. Massive pulmonary emboli and cardiac arrest. Dead." },
+                    { text: "Flush the line with D5W afterward.", outcome: "death", rationale: "You crystallized the entire IV line, forcing a solid block of medication into their heart, stopping it instantly." },
+                    { text: "Notice it turning cloudy and stop.", outcome: "rehab", rationale: "You stopped before killing them, but the delay in getting a new, safe dose allowed the seizures to cook their brain. Neuro rehab required." }
+                ]
+            },
+            {
+                text: "Administer the 1000mg as a rapid IV push (bolus).",
+                instructorComment: "Pushing 1000mg of Phenytoin rapidly will drop their blood pressure to zero and cause a fatal dysrhythmia. Don't do it.",
+                followUps: [
+                    { text: "Slam the syringe.", outcome: "death", rationale: "Their heart rate plummeted, their BP disappeared, and they went into asystole. You executed them." },
+                    { text: "Push it over 2 minutes.", outcome: "death", rationale: "That's 500mg a minute! The maximum safe rate is 50mg/min. You caused fatal cardiovascular collapse." },
+                    { text: "Realize the risk, grab an IV pump, and set it to 50mg/min.", outcome: "stability", rationale: "You caught yourself right before committing a fatal med error. The slow infusion works perfectly. Good save." }
+                ]
+            },
+            {
+                text: "Administer it via their NG tube while continuous tube feeds are running.",
+                instructorComment: "Enteral feedings completely bind to Phenytoin! The drug won't absorb at all.",
+                followUps: [
+                    { text: "Wait for the seizures to stop.", outcome: "death", rationale: "The tube feeds deactivated the drug entirely. The patient remained in status epilepticus until their brain herniated. Dead." },
+                    { text: "Increase the tube feed rate.", outcome: "death", rationale: "You actively made the absorption even worse. They died of a massive seizure." },
+                    { text: "Stop the feeds for 2 hours, give the med, wait 2 hours.", outcome: "rehab", rationale: "You remembered the 2-hour hold rule for tube feeds! But giving it PO/NG during an ACTIVE seizure took way too long. Brain damage. Rehab." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "ob_hellp",
+        scenario: "A 34-week pregnant patient complains of severe, unrelenting Right Upper Quadrant (epigastric) pain, nausea, and a horrible headache. Her labs show Platelets: 40,000, AST: 450, ALT: 500.",
+        options: [
+            {
+                text: "Identify HELLP Syndrome and prep for immediate delivery and IV Magnesium Sulfate.",
+                instructorComment: "Hemolysis, Elevated Liver enzymes, Low Platelets (HELLP)! The liver is actively failing and swelling. The only cure is delivery.",
+                followUps: [
+                    { text: "Start the Mag Sulfate and page the surgical team STAT.", outcome: "stability", rationale: "Perfect! You prevented the eclamptic seizure with Mag, and getting the baby out saves the mother's liver from rupturing. Both survive! Stability!" },
+                    { text: "Give her a massive dose of IV Heparin for the low platelets.", outcome: "death", rationale: "Her platelets are 40,000 and you gave a blood thinner?! She hemorrhaged internally and bled to death on the table." },
+                    { text: "Perform a vigorous fundal massage.", outcome: "death", rationale: "The massage ruptured her swelling liver capsule. She suffered a catastrophic internal hemorrhage and died in minutes." }
+                ]
+            },
+            {
+                text: "Vigorously palpate her Right Upper Quadrant to assess the pain.",
+                instructorComment: "That pain is her liver capsule stretched to the absolute breaking point. If you push on it...",
+                followUps: [
+                    { text: "Push deep under the rib cage.", outcome: "death", rationale: "POP. You ruptured her liver. She bled to death internally in less than 5 minutes. The baby died too. Horrific malpractice." },
+                    { text: "Massage the area to relieve the spasm.", outcome: "death", rationale: "Massaging a liver in HELLP syndrome guarantees a fatal rupture. You literally killed two people with your bare hands." },
+                    { text: "Stop before you push hard, realizing the danger.", outcome: "rehab", rationale: "You pulled your hand back just in time. The delivery saves them, but the delay causes severe maternal bleeding requiring transfusions." }
+                ]
+            },
+            {
+                text: "Assume it's severe heartburn and give a GI Cocktail (Antacids).",
+                instructorComment: "Right Upper Quadrant pain in the third trimester is NEVER just heartburn. You are ignoring liver failure.",
+                followUps: [
+                    { text: "Send her home to rest.", outcome: "death", rationale: "Her liver ruptured in her sleep at home. She and the baby both died. You are facing criminal negligence." },
+                    { text: "Give her Tylenol for the headache.", outcome: "death", rationale: "You gave Tylenol (hepatotoxic) to a failing liver. She went into fulminant liver failure and died." },
+                    { text: "Look at the lab results and panic.", outcome: "rehab", rationale: "You finally checked the 40,000 platelet count and called the OR. They survive, but she spends weeks in the ICU for liver recovery." }
+                ]
+            },
+            {
+                text: "Place her in a dark, quiet room and check on her in 4 hours.",
+                instructorComment: "Seizure precautions are great, but abandoning a patient in multi-organ failure for 4 hours is a death sentence.",
+                followUps: [
+                    { text: "Check on her at the end of the shift.", outcome: "death", rationale: "She had a massive eclamptic seizure, her liver ruptured, and she bled to death in the dark alone." },
+                    { text: "Give her Ambien to help her sleep.", outcome: "death", rationale: "You masked the worsening neuro signs. She stroked out from the extreme hypertension while she slept." },
+                    { text: "Notice her urine output is dark like tea and call the doctor.", outcome: "stability", rationale: "The dark urine (hemolysis) snapped you back to reality. The C-section happens just in time. Lucky save." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "peds_hypoglycemia",
+        scenario: "You are assessing a 10 lb, 5 oz newborn born 2 hours ago to a mother with uncontrolled gestational diabetes. The baby is lethargic, jittery, and has a temperature of 97.0°F (36.1°C).",
+        options: [
+            {
+                text: "Perform a STAT heel-stick blood glucose and feed the baby immediately.",
+                instructorComment: "Yes! Macrosomic babies of diabetic moms are used to massive sugar supply. Once the cord is cut, their own insulin crashes their blood sugar.",
+                followUps: [
+                    { text: "Feed formula or breastmilk and recheck glucose in 30 mins.", outcome: "stability", rationale: "Textbook newborn care! The glucose was 25 mg/dL. The feeding raised it, the jitteriness stops, and the baby's temp normalizes. Stability!" },
+                    { text: "Give them a bottle of pure sterile water.", outcome: "death", rationale: "Water has zero sugar! The baby's blood glucose dropped to 10 mg/dL. They suffered a massive hypoglycemic seizure and died." },
+                    { text: "Push IV regular insulin.", outcome: "death", rationale: "You gave insulin to a baby with hypoglycemia?! You literally assassinated a newborn. Hand over your license immediately." }
+                ]
+            },
+            {
+                text: "Wrap the baby in a warm blanket and place them in an incubator.",
+                instructorComment: "They are cold because they have no glucose to burn for energy! Warming them increases their metabolic rate, burning their remaining sugar faster.",
+                followUps: [
+                    { text: "Turn the incubator to maximum heat.", outcome: "death", rationale: "The heat accelerated their metabolism. Their blood sugar hit 0. They seized and died while you watched them turn pink." },
+                    { text: "Leave them to sleep for 4 hours.", outcome: "death", rationale: "They didn't sleep, they slipped into a fatal hypoglycemic coma. Preventable tragedy." },
+                    { text: "Realize they are jittery and check a blood sugar.", outcome: "rehab", rationale: "You finally checked the sugar. It's 18 mg/dL. They need an emergency IV Dextrose push and spend a week in the NICU." }
+                ]
+            },
+            {
+                text: "Tell the mother the jitteriness is just normal newborn reflexes.",
+                instructorComment: "Jitteriness + Lethargy + Macrosomia = Hypoglycemia until proven otherwise. You are dismissing a lethal crisis.",
+                followUps: [
+                    { text: "Send the baby to the normal nursery.", outcome: "death", rationale: "The baby seized in the nursery bassinet alone and suffered anoxic brain death." },
+                    { text: "Give the baby a pacifier.", outcome: "death", rationale: "Sucking burns calories! You made them burn their last drop of glucose. Fatal hypoglycemic shock." },
+                    { text: "The mother insists the baby is acting weird, so you check glucose.", outcome: "stability", rationale: "The mother saved her own baby despite your incompetence. You feed the baby and they stabilize." }
+                ]
+            },
+            {
+                text: "Administer IV Glucagon immediately.",
+                instructorComment: "Glucagon works by releasing stored glycogen from the liver. Newborns don't have adequate glycogen stores! It won't work.",
+                followUps: [
+                    { text: "Wait for the Glucagon to raise the sugar.", outcome: "death", rationale: "It did absolutely nothing. The baby's blood sugar bottomed out and they died of a hypoglycemic seizure." },
+                    { text: "Give a second dose of Glucagon.", outcome: "death", rationale: "Still nothing. You are relying on empty liver stores. The newborn codes." },
+                    { text: "Realize it's not working and push IV Dextrose.", outcome: "rehab", rationale: "Dextrose provides direct sugar! You saved them, but the delay caused minor brain damage from the prolonged hypoglycemia. Rehab." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "gi_dumping",
+        scenario: "Your patient is 3 days post-partial gastrectomy. 15 minutes after eating breakfast, they complain of severe dizziness, sweating, palpitations, and intense abdominal cramping.",
+        options: [
+            {
+                text: "Identify Dumping Syndrome and advise them to lie flat after meals.",
+                instructorComment: "Great catch! Without a stomach reservoir, the hypertonic food dumped straight into the small intestine, pulling massive amounts of fluid with it. Lying flat slows the gravity dump.",
+                followUps: [
+                    { text: "Teach them to separate solid foods from liquids by 30 minutes.", outcome: "stability", rationale: "Perfect education! Lying flat slows gastric emptying, and separating fluids prevents the food from washing into the bowel too fast. Stability achieved!" },
+                    { text: "Tell them to sit upright for 2 hours after eating.", outcome: "rehab", rationale: "Sitting upright uses gravity to make Dumping Syndrome WORSE! They pass out from hypovolemia and hit their head. Rehab." },
+                    { text: "Give them a high-sugar dessert to raise their blood sugar.", outcome: "death", rationale: "High sugar is hypertonic! You caused a massive fluid shift into their bowel. They went into severe hypovolemic shock and coded." }
+                ]
+            },
+            {
+                text: "Encourage them to drink a large glass of water to soothe the cramping.",
+                instructorComment: "Drinking fluids WITH meals is the absolute worst thing you can do for Dumping Syndrome. You are flushing the food straight into the jejunum.",
+                followUps: [
+                    { text: "Give them a second glass of water.", outcome: "death", rationale: "The massive fluid shift out of their bloodstream into the bowel dropped their BP to 60/30. They died of distributive shock." },
+                    { text: "Tell them to walk around the unit.", outcome: "death", rationale: "Gravity + Fluids + Ambulation = Maximum Dumping. They collapsed, seized from lack of brain perfusion, and died." },
+                    { text: "Realize they are pale and lay them flat immediately.", outcome: "rehab", rationale: "You fixed the position, but the water caused severe reactive hypoglycemia 2 hours later. ICU admission required." }
+                ]
+            },
+            {
+                text: "Administer a PRN dose of IV Dextrose (D50).",
+                instructorComment: "Dumping syndrome initially causes a spike in blood sugar, followed by a crash later. Giving D50 right now is throwing gasoline on the fire.",
+                followUps: [
+                    { text: "Check their blood sugar in 10 minutes.", outcome: "death", rationale: "The extreme hypertonic D50 pulled all remaining fluid into the gut. They suffered fatal cardiovascular collapse." },
+                    { text: "Give them IV Insulin right after.", outcome: "death", rationale: "You caused a massive spike, then a massive crash. The wild blood sugar swings caused a fatal cardiac arrhythmia." },
+                    { text: "Stop the Dextrose and give IV Normal Saline.", outcome: "stability", rationale: "You realized they needed volume, not sugar! The saline fixes the hypovolemia. You barely survived." }
+                ]
+            },
+            {
+                text: "Assume it is a heart attack and push Sublingual Nitroglycerin.",
+                instructorComment: "Palpitations and sweating are from hypovolemia as fluid rushes into the gut. Nitro will drop their already crashing blood pressure to zero.",
+                followUps: [
+                    { text: "Give a second dose of Nitro.", outcome: "death", rationale: "You completely eradicated their venous return. The heart stopped filling and stopped pumping. Dead." },
+                    { text: "Call a Code STEMI.", outcome: "death", rationale: "They died in the elevator on the way to the Cath Lab because their BP was 40/palpable from the Nitro." },
+                    { text: "Take their blood pressure before giving the Nitro.", outcome: "stability", rationale: "You saw the BP was 80/50 and withheld the drug. You lay them flat and they recover. Always assess before administering!" }
+                ]
+            }
+        ]
+    },
+    {
+        id: "renal_hypokalemia",
+        scenario: "Your patient has had a Salem Sump NG tube to continuous high wall suction for 3 days. They complain of profound muscle weakness. The EKG shows prominent U-waves, flat T-waves, and frequent PVCs.",
+        options: [
+            {
+                text: "Identify severe Hypokalemia, stop the NG suction, and request IV Potassium.",
+                instructorComment: "Stomach acid is full of potassium! Sucking it out for 3 days caused severe hypokalemia, leading to cardiac irritability (U-waves/PVCs).",
+                followUps: [
+                    { text: "Administer the IV Potassium diluted via an infusion pump.", outcome: "stability", rationale: "Flawless! You replaced the lost electrolyte safely and slowly. The PVCs stop, the muscle strength returns. Stability!" },
+                    { text: "Push the Potassium IV fast to save the heart.", outcome: "death", rationale: "NEVER PUSH POTASSIUM! You gave a lethal injection. The heart instantly stopped. You killed them." },
+                    { text: "Give them PO Potassium pills.", outcome: "rehab", rationale: "They have an NG tube to suction! The pills got sucked right back out into the canister. The heart goes into V-Fib. Defibrillation and ICU rehab needed." }
+                ]
+            },
+            {
+                text: "Increase the NG tube suction to clear the stomach faster.",
+                instructorComment: "You are actively sucking the remaining life out of this patient. The potassium is going to hit zero.",
+                followUps: [
+                    { text: "Ignore the EKG alarms.", outcome: "death", rationale: "The PVCs turned into Ventricular Tachycardia, then Ventricular Fibrillation. They died while the suction canister bubbled." },
+                    { text: "Give them a diuretic to help their kidneys.", outcome: "death", rationale: "Diuretics waste MORE potassium! You completely drained their electrolytes. Fatal cardiac arrest." },
+                    { text: "Turn the suction off and draw a stat BMP.", outcome: "rehab", rationale: "You finally checked the labs. Potassium is 2.1. They survive after multiple IV riders, but suffer prolonged cardiac damage." }
+                ]
+            },
+            {
+                text: "Administer IV Calcium Gluconate to stabilize the heart.",
+                instructorComment: "Calcium Gluconate stabilizes the heart in HYPERkalemia, not HYPOkalemia. It won't fix this.",
+                followUps: [
+                    { text: "Give IV Regular Insulin next.", outcome: "death", rationale: "Insulin pushes Potassium INTO the cells! You took their already low blood potassium and dropped it to zero. Instant death." },
+                    { text: "Give PO Kayexalate.", outcome: "death", rationale: "Kayexalate removes Potassium from the body! You literally gave them a drug to worsen their lethal condition. Dead." },
+                    { text: "Read the EKG properly and hang IV Potassium.", outcome: "stability", rationale: "You stopped confusing hyper with hypo. The IV potassium fixes the U-waves. Good save." }
+                ]
+            },
+            {
+                text: "Give them a PRN dose of Amiodarone for the PVCs.",
+                instructorComment: "Amiodarone fixes arrhythmias, but it doesn't fix the underlying lack of electrolytes. The heart will still fail.",
+                followUps: [
+                    { text: "Wait to see if the PVCs stop.", outcome: "death", rationale: "The Amiodarone prolonged the QT interval, combining with the hypokalemia to trigger fatal Torsades de Pointes. Dead." },
+                    { text: "Push IV Magnesium.", outcome: "rehab", rationale: "Magnesium helps stabilize the heart, but they still need Potassium! They survive the code blue but require a pacemaker." },
+                    { text: "Check a Magnesium and Potassium level.", outcome: "stability", rationale: "You checked the labs, saw they were both low, and replaced both safely. The heart rhythm normalizes." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "ob_abruption",
+        scenario: "A 38-week pregnant patient with a history of cocaine use arrives with sudden, tearing abdominal pain. She has dark red vaginal bleeding. Her abdomen is rigid and board-like. The fetal heart monitor shows late decelerations.",
+        options: [
+            {
+                text: "Identify Placental Abruption, start two large IVs, and prep for an emergency STAT C-Section.",
+                instructorComment: "Boom! Cocaine causes massive vasoconstriction, ripping the placenta right off the uterine wall. Dark red blood + rigid board abdomen = Abruption. Save the baby!",
+                followUps: [
+                    { text: "Administer IV fluids and Oxygen to the mother en route to the OR.", outcome: "stability", rationale: "Flawless emergency OB response! You maximized perfusion to the baby while rushing to surgery. Both survive! Stability!" },
+                    { text: "Perform a deep vaginal exam to check dilation.", outcome: "death", rationale: "You pushed on an actively bleeding, separating placenta. You worsened the hemorrhage. The mother and baby bleed to death." },
+                    { text: "Wait for an ultrasound to confirm the diagnosis.", outcome: "death", rationale: "Time is blood! While you waited for the ultrasound tech, the placenta completely detached. The baby suffocated and the mother bled out." }
+                ]
+            },
+            {
+                text: "Administer IV Pitocin to speed up the labor.",
+                instructorComment: "The placenta is tearing away from the wall, and you want to forcefully contract the uterus?! You are going to squeeze the baby to death.",
+                followUps: [
+                    { text: "Increase the Pitocin rate when bleeding increases.", outcome: "death", rationale: "The contractions crushed the baby against the separating placenta. Fetal death, and the mother suffered a ruptured uterus." },
+                    { text: "Have the mother push.", outcome: "death", rationale: "Pushing caused a massive internal hemorrhage. The baby was stillborn and the mother died of hypovolemic shock." },
+                    { text: "Stop the Pitocin and run to the OR.", outcome: "rehab", rationale: "You realized your catastrophic error. The C-section saves the mother, but the baby suffers severe hypoxic brain injury (cerebral palsy)." }
+                ]
+            },
+            {
+                text: "Assume it's Placenta Previa and place her on strict bedrest.",
+                instructorComment: "Previa is PAINLESS bright red bleeding. Abruption is PAINFUL dark red bleeding. You misdiagnosed a lethal emergency.",
+                followUps: [
+                    { text: "Check on her in an hour.", outcome: "death", rationale: "She bled out into her rigid abdomen. You found two dead patients when you returned." },
+                    { text: "Give her Tylenol for the abdominal pain.", outcome: "death", rationale: "Tylenol doesn't fix a placenta tearing off the wall. Fatal hemorrhage." },
+                    { text: "Notice the fetal heart rate dropping to 60 and hit the alarm.", outcome: "rehab", rationale: "You ignored the mom but saw the baby dying. The STAT C-section saves them, but mom requires a massive blood transfusion." }
+                ]
+            },
+            {
+                text: "Place the mother in a supine (flat on back) position and elevate her legs.",
+                instructorComment: "Laying a 38-week pregnant woman flat crushes her vena cava, completely cutting off blood return to her heart and the baby.",
+                followUps: [
+                    { text: "Wait for the blood pressure to improve.", outcome: "death", rationale: "The BP dropped to zero. She went into cardiac arrest and the baby died of total hypoxia." },
+                    { text: "Start chest compressions.", outcome: "death", rationale: "You did CPR while she was flat, meaning no blood circulated anyway. Epic failure." },
+                    { text: "Roll her onto her left side.", outcome: "stability", rationale: "You fixed her position, restoring blood flow! You rush her to the OR and save both lives. Good recovery." }
+                ]
+            }
+        ]
+    },
+{
+        id: "cardiac_svt",
+        scenario: "Your patient's heart monitor suddenly alarms. They are awake, slightly dizzy, and their heart rate is 220 bpm. The EKG shows a narrow-complex Supraventricular Tachycardia (SVT). BP is 105/70.",
+        options: [
+            {
+                text: "Instruct the patient to bear down like they are having a bowel movement (Valsalva).",
+                instructorComment: "Vagal maneuvers! You are stimulating the vagus nerve to naturally slam the brakes on the AV node. Great first step for stable SVT.",
+                followUps: [
+                    { text: "It fails. Push IV Adenosine rapidly, followed by a flush.", outcome: "stability", rationale: "Textbook! Vagal failed, so you chemically restarted the heart. The monitor flatlines for 3 terrifying seconds, then a normal sinus rhythm returns. Stability!" },
+                    { text: "It fails. Defibrillate them at 200 Joules.", outcome: "death", rationale: "Defibrillation is for DEAD people (pulseless V-Tach/V-Fib). You shocked a beating heart and threw them into a fatal arrhythmia. Murderer." },
+                    { text: "Push the Adenosine over 2 minutes so it doesn't hurt.", outcome: "rehab", rationale: "Adenosine has a half-life of 10 seconds! Pushing it slow means it gets destroyed in the blood before it reaches the heart. Patient passes out from SVT. ICU required." }
+                ]
+            },
+            {
+                text: "Synchronized Cardioversion immediately.",
+                instructorComment: "Cardioversion is for UNSTABLE patients. Their BP is 105/70, they are awake and talking! Put the paddles away, psycho.",
+                followUps: [
+                    { text: "Shock them without sedation.", outcome: "rehab", rationale: "You traumatized them for life by electrocuting them while fully awake, but it did fix the rhythm. You are sued for battery." },
+                    { text: "Give them a massive dose of Propofol first.", outcome: "death", rationale: "You knocked out their respiratory drive and dropped their BP to zero. They coded before you could even charge the paddles." },
+                    { text: "Realize they are stable and push IV Amiodarone.", outcome: "death", rationale: "Amiodarone is for wide-complex ventricular issues, not narrow-complex SVT! You caused fatal bradycardia." }
+                ]
+            },
+            {
+                text: "Administer a STAT dose of IV Epinephrine.",
+                instructorComment: "Their heart is beating 220 times a minute, and you want to give them pure adrenaline?!",
+                followUps: [
+                    { text: "Push it fast.", outcome: "death", rationale: "The heart rate hit 300, the myocardium ran out of oxygen, and the heart literally cooked itself to death. Fatal myocardial infarction." },
+                    { text: "Run it as a slow drip.", outcome: "death", rationale: "Same result, just slightly slower. You gave meth to a heart that needed a sedative." },
+                    { text: "Throw the Epi away and push Atropine.", outcome: "death", rationale: "Atropine SPEEDS UP the heart! You took a heart rate of 220 and pushed it to infinity. Dead." }
+                ]
+            },
+            {
+                text: "Have them drink a glass of ice water.",
+                instructorComment: "Drinking cold water actually CAN be a mild vagal maneuver, but you're wasting time in a critical cardiac event.",
+                followUps: [
+                    { text: "Tell them to chug it fast.", outcome: "death", rationale: "They choked on the water because they were dizzy from the SVT. Aspirated, went into respiratory arrest, and died." },
+                    { text: "Wait 30 minutes to see if it works.", outcome: "death", rationale: "The SVT wore out the heart muscle. They degraded into pulseless electrical activity (PEA) and died." },
+                    { text: "Realize it's not working and push IV Adenosine.", outcome: "stability", rationale: "You finally used the crash cart instead of the ice machine. The Adenosine works. Barely passed." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "endo_pheo",
+        scenario: "A patient with a known adrenal gland tumor (Pheochromocytoma) complains of a sudden, explosive headache. They are dripping sweat. BP is 260/140, HR is 130.",
+        options: [
+            {
+                text: "Administer IV Nitroprusside or Phentolamine immediately.",
+                instructorComment: "Hypertensive Crisis from a massive catecholamine (adrenaline) dump! You grabbed the potent Alpha-blockers to drop the pressure.",
+                followUps: [
+                    { text: "Keep the patient in a dark, quiet room with minimal stimulation.", outcome: "stability", rationale: "Perfect! You pharmacologically blocked the adrenaline and removed environmental triggers. The BP drops to 140/90. Stability!" },
+                    { text: "Palpate the abdomen to check the tumor size.", outcome: "death", rationale: "NEVER palpate a Pheochromocytoma! You physically squeezed more adrenaline into their blood. Their BP hit 300/180. Brain exploded." },
+                    { text: "Sit them up and have them bear down.", outcome: "death", rationale: "Bearing down spiked their intracranial pressure. With a BP of 260/140, you just caused a catastrophic hemorrhagic stroke." }
+                ]
+            },
+            {
+                text: "Perform a deep abdominal assessment to locate the tumor.",
+                instructorComment: "You are literally squeezing a sponge soaked in pure adrenaline directly into their bloodstream. Say goodbye to this patient.",
+                followUps: [
+                    { text: "Push hard on the flanks.", outcome: "death", rationale: "The massive adrenaline surge instantly ruptured their aorta. They bled to death in seconds." },
+                    { text: "Massage the area gently.", outcome: "death", rationale: "Still squeezed it! The blood pressure spiked so high it blew every vessel in their brain. Dead." },
+                    { text: "Realize the danger, stop, and push an Alpha-blocker.", outcome: "rehab", rationale: "You caused a minor stroke before you realized your mistake. They survive but require extensive speech and physical therapy." }
+                ]
+            },
+            {
+                text: "Administer PRN Acetaminophen for the headache.",
+                instructorComment: "A headache from a BP of 260/140 means their brain is actively swelling and bleeding. Tylenol is offensive to medical science here.",
+                followUps: [
+                    { text: "Dim the lights and leave the room.", outcome: "death", rationale: "You abandoned a patient in a hypertensive crisis. They stroked out and died while you were charting." },
+                    { text: "Check on them in 15 minutes.", outcome: "death", rationale: "They are dead. The pressure crushed their brainstem." },
+                    { text: "Notice their pupils are blown and call a code.", outcome: "rehab", rationale: "The ICU team manages to save their life with an emergency craniotomy, but they are severely brain damaged." }
+                ]
+            },
+            {
+                text: "Elevate their legs to improve venous return.",
+                instructorComment: "You are pushing MORE blood volume toward a heart and brain that are already bursting with 260/140 pressure. Gravity is not your friend.",
+                followUps: [
+                    { text: "Put them in full Trendelenburg.", outcome: "death", rationale: "The massive rush of blood to their head blew out their cerebral arteries. Fatal intracranial hemorrhage." },
+                    { text: "Push an IV fluid bolus.", outcome: "death", rationale: "Adding fluid volume to this pressure cooker? You caused flash pulmonary edema. They drowned in their own fluids." },
+                    { text: "Drop the legs, elevate the head, and push Phentolamine.", outcome: "stability", rationale: "You reversed your gravitational error and gave the right drug. The BP slowly comes down. You got lucky." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "nutrition_refeeding",
+        scenario: "A patient with severe Anorexia Nervosa has been receiving Total Parenteral Nutrition (TPN) for 3 days. They suddenly complain of severe muscle weakness, shallow breathing, and their serum Phosphorus is 1.0 mg/dL.",
+        options: [
+            {
+                text: "Identify Refeeding Syndrome, slow the TPN, and request IV electrolytes.",
+                instructorComment: "Yes! The sudden influx of sugar from the TPN caused insulin to spike, pulling all the Phosphorus, Potassium, and Mag into the cells. Their blood is empty of electrolytes.",
+                followUps: [
+                    { text: "Administer IV Phosphorus and monitor the EKG.", outcome: "stability", rationale: "Perfect! You replaced the critical electrolytes before the diaphragm and heart muscles paralyzed. Patient stabilizes!" },
+                    { text: "Increase the TPN rate to give them more energy.", outcome: "death", rationale: "You shoved even MORE insulin into the system, bottoming out the Phosphorus to zero. The diaphragm paralyzed. Fatal respiratory arrest." },
+                    { text: "Give them a high-carb oral meal.", outcome: "death", rationale: "Carbs trigger insulin! You caused the exact same fatal electrolyte shift. They coded from a cardiac arrhythmia." }
+                ]
+            },
+            {
+                text: "Assume it's an anxiety attack and give them a paper bag.",
+                instructorComment: "They are breathing shallowly because their diaphragm muscle has no Phosphorus to contract. It's not anxiety, it's paralysis.",
+                followUps: [
+                    { text: "Tell them to calm down.", outcome: "death", rationale: "They suffocated to death because their respiratory muscles completely failed." },
+                    { text: "Administer IV Ativan.", outcome: "death", rationale: "You gave a respiratory depressant to someone with a paralyzing diaphragm. You killed them instantly." },
+                    { text: "Notice their O2 sat dropping and call a Rapid Response.", outcome: "rehab", rationale: "The ICU intubates them and replaces the Phosphorus. They spend a month on a ventilator. Rehab required." }
+                ]
+            },
+            {
+                text: "Stop the TPN completely and instantly.",
+                instructorComment: "Stopping TPN cold turkey causes a massive, lethal crash in blood sugar (rebound hypoglycemia).",
+                followUps: [
+                    { text: "Wait for the doctor to arrive.", outcome: "death", rationale: "Their blood sugar dropped to 20 mg/dL. They had a massive hypoglycemic seizure and died before the doctor walked in." },
+                    { text: "Hang D10W (10% Dextrose) while waiting.", outcome: "stability", rationale: "Hanging D10W prevents the hypoglycemic crash when TPN is stopped! You safely bridged them until the electrolytes could be fixed. Excellent." },
+                    { text: "Give them a diet soda.", outcome: "death", rationale: "Diet soda has no sugar! They still went into a fatal hypoglycemic coma." }
+                ]
+            },
+            {
+                text: "Administer IV Furosemide (Lasix) for the shallow breathing.",
+                instructorComment: "You think the shallow breathing is fluid overload? Lasix depletes electrolytes. Their electrolytes are already critically low!",
+                followUps: [
+                    { text: "Push the Lasix fast.", outcome: "death", rationale: "You dumped whatever Potassium and Mag they had left. The heart went into Ventricular Fibrillation. Dead." },
+                    { text: "Check their Potassium level an hour later.", outcome: "death", rationale: "They are dead. The Lasix wiped out their cardiac action potentials." },
+                    { text: "Realize the lungs are clear and stop the Lasix.", outcome: "rehab", rationale: "You stopped the drug, but the delay in replacing Phosphorus caused minor cardiac damage. ICU transfer." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "pharm_vancomycin",
+        scenario: "10 minutes into a new IV Vancomycin infusion, the patient's face, neck, and chest become intensely red and flushed. They report feeling hot and itchy. BP is 105/70. There is NO wheezing or stridor.",
+        options: [
+            {
+                text: "Identify Red Man Syndrome and slow the Vancomycin infusion rate.",
+                instructorComment: "Brilliant! Red Man Syndrome is a rate-dependent histamine release, NOT a true IgE anaphylactic allergy. You checked the airway (no stridor) and the BP (stable).",
+                followUps: [
+                    { text: "Ensure the infusion runs over at least 60-90 minutes.", outcome: "stability", rationale: "Textbook! By slowing the rate, the histamine release stops, the redness fades, and they get their life-saving antibiotics. Stability!" },
+                    { text: "Give them IV Epinephrine just to be safe.", outcome: "death", rationale: "Epi causes massive vasoconstriction and tachycardia! You gave a lethal cardiac stimulant to someone with a minor flushing reaction. They coded." },
+                    { text: "Turn the infusion rate up to get it over with.", outcome: "death", rationale: "Speeding it up caused a massive, systemic histamine dump. Their blood pressure tanked to zero. Fatal distributive shock." }
+                ]
+            },
+            {
+                text: "Assume it is Anaphylaxis, stop the infusion, and push IV Epinephrine.",
+                instructorComment: "You misdiagnosed it. There is no wheezing, no stridor, and the BP is fine. You are treating a rash with a nuclear bomb.",
+                followUps: [
+                    { text: "Call a Code Blue.", outcome: "rehab", rationale: "You panicked the whole hospital. The patient survives the unnecessary Epi, but because you stopped the Vanco, their MRSA infection turns into sepsis. Rehab." },
+                    { text: "Push a second dose of Epi.", outcome: "death", rationale: "You overloaded their heart with adrenaline. They suffered a fatal myocardial infarction." },
+                    { text: "Realize there is no stridor, stop the Epi, and slow the Vanco.", outcome: "stability", rationale: "You caught yourself right before pushing the syringe. You slowed the rate and they are fine. Close call." }
+                ]
+            },
+            {
+                text: "Administer IV Diphenhydramine (Benadryl) and keep the rate the same.",
+                instructorComment: "Benadryl helps with the histamine, but if you don't slow the rate, the drug will just keep pouring histamine into the blood.",
+                followUps: [
+                    { text: "Push the Benadryl very fast.", outcome: "death", rationale: "Fast IV Benadryl causes severe hypotension. Combined with the Vancomycin histamine release, their BP dropped to 40/20. Dead." },
+                    { text: "Slow the Vanco rate after giving the Benadryl.", outcome: "stability", rationale: "You finally did the right thing. The antihistamine helps the itching, and slowing the rate stops the root cause. Pass." },
+                    { text: "Increase the Vanco rate.", outcome: "death", rationale: "You overpowered the Benadryl. Massive histamine release caused fatal cardiovascular collapse." }
+                ]
+            },
+            {
+                text: "Apply a cool washcloth to their face and ignore the redness.",
+                instructorComment: "Ignoring a drug reaction? Even if it's just Red Man Syndrome, if it continues unchecked, it will drop their blood pressure.",
+                followUps: [
+                    { text: "Leave the room.", outcome: "death", rationale: "The infusion finished too fast. The massive histamine dump tanked their BP and they died of shock while you were gone." },
+                    { text: "Document that the patient has a sunburn.", outcome: "death", rationale: "You are the most incompetent nurse on the floor. They died of shock from the rapid infusion." },
+                    { text: "Notice their BP dropping and slow the infusion.", outcome: "rehab", rationale: "You waited until it became a crisis. They survive, but require fluid boluses to fix the hypotension you caused." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "peds_shunt",
+        scenario: "A 6-month-old infant with a Ventriculoperitoneal (VP) Shunt for hydrocephalus is brought to the ER. They are projectile vomiting, extremely irritable, and their anterior fontanelle is tense and bulging.",
+        options: [
+            {
+                text: "Elevate the head of the bed to 30 degrees and call the neurosurgeon.",
+                instructorComment: "VP Shunt malfunction! The fluid isn't draining from the brain to the belly. Intracranial Pressure is spiking. You elevated the head to promote venous drainage.",
+                followUps: [
+                    { text: "Keep the infant calm and prep for a CT scan.", outcome: "stability", rationale: "Perfect. Minimal stimulation prevents further ICP spikes. The CT confirms the blockage, the surgeon revises the shunt, and the baby's brain is saved!" },
+                    { text: "Perform a lumbar puncture to drain the fluid.", outcome: "death", rationale: "NEVER do an LP on a patient with high ICP! You caused a massive pressure gradient and the baby's brainstem herniated out of their skull. Instant death." },
+                    { text: "Have the baby cry to tire them out so they sleep.", outcome: "death", rationale: "Crying massively spikes ICP! The pressure crushed the brainstem. Fatal herniation." }
+                ]
+            },
+            {
+                text: "Forcefully pump the shunt valve on the baby's head to clear the clog.",
+                instructorComment: "You are blindly pushing fluid around in a closed, high-pressure system. You don't know if the clog is above or below the valve.",
+                followUps: [
+                    { text: "Push it as hard as you can.", outcome: "death", rationale: "You forced the blocked cerebrospinal fluid backward into the ventricles, massively spiking the ICP. The brain herniated. You killed them." },
+                    { text: "Massage the baby's neck to help the tubing.", outcome: "rehab", rationale: "You dislodged the tubing entirely! Emergency open neurosurgery is required to fix the mess you made. Major brain rehab needed." },
+                    { text: "Realize you shouldn't touch it and call the surgeon.", outcome: "stability", rationale: "You stopped playing neurosurgeon just in time. The actual surgeon fixes it safely." }
+                ]
+            },
+            {
+                text: "Lay the baby completely flat and elevate their legs.",
+                instructorComment: "Laying a patient with high Intracranial Pressure flat is a death sentence. Gravity will pool all the blood and fluid in their head.",
+                followUps: [
+                    { text: "Wait 15 minutes to see if they calm down.", outcome: "death", rationale: "The pressure in their skull exceeded their blood pressure. Blood stopped flowing to the brain. Brain death." },
+                    { text: "Give them a bottle to stop the crying.", outcome: "death", rationale: "They are projectile vomiting! They aspirated the formula and died of suffocation while their brain swelled." },
+                    { text: "Elevate the head of the bed to 30 degrees instead.", outcome: "rehab", rationale: "You fixed your gravitational error, but the brief spike in ICP caused a minor seizure. Rehab required." }
+                ]
+            },
+            {
+                text: "Give them an anti-nausea medication (Zofran) for the vomiting.",
+                instructorComment: "The vomiting is caused by the brain literally being crushed, not a stomach bug! You are treating a symptom and ignoring the dying brain.",
+                followUps: [
+                    { text: "Send them home since the vomiting stopped.", outcome: "death", rationale: "The baby's brain herniated in the car seat on the way home. Preventable tragedy." },
+                    { text: "Check their pupils.", outcome: "death", rationale: "The pupils are blown and fixed. Because you delayed calling the surgeon, the baby is brain dead." },
+                    { text: "Notice the bulging fontanelle and call a code.", outcome: "rehab", rationale: "You finally noticed the giant bulging soft spot. Emergency surgery saves their life, but they suffer developmental delays." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "trauma_flail",
+        scenario: "A patient arrives after a severe car crash. You observe paradoxical respirations: the right side of their chest sinks INWARD when they inhale, and bulges OUTWARD when they exhale. SpO2 is 85%.",
+        options: [
+            {
+                text: "Identify a Flail Chest and prepare for positive pressure ventilation (BiPAP or Intubation).",
+                instructorComment: "Flail Chest! Multiple ribs are broken in multiple places, creating a free-floating segment. Positive pressure from a vent will act as an 'internal splint' to hold the chest open.",
+                followUps: [
+                    { text: "Administer prescribed IV pain medication.", outcome: "stability", rationale: "Perfect! You secured the airway with positive pressure, and treating the severe pain allows them to tolerate the vent without fighting it. Stability!" },
+                    { text: "Bind the chest tightly with an ACE bandage.", outcome: "death", rationale: "You completely restricted their ability to expand their lungs. You suffocated a trauma patient. Dead." },
+                    { text: "Place a heavy sandbag on the flail segment.", outcome: "death", rationale: "A medieval medical practice that crushes the underlying lung tissue. They died of massive pulmonary contusions and hypoxia." }
+                ]
+            },
+            {
+                text: "Roll the patient onto their UNINJURED (good) side.",
+                instructorComment: "If you put their good lung against the mattress, gravity and their body weight will crush their only working lung!",
+                followUps: [
+                    { text: "Wait for their oxygen to improve.", outcome: "death", rationale: "The SpO2 dropped to 40%. They suffocated because the bad lung was flailing and the good lung was crushed by the bed. Dead." },
+                    { text: "Tell them to take deep breaths.", outcome: "death", rationale: "They physically cannot. The pain is 10/10 and the mechanics of their chest are broken. Fatal respiratory arrest." },
+                    { text: "Roll them onto the INJURED side instead.", outcome: "rehab", rationale: "Rolling onto the injured side splints the flail segment! It hurts, but it saves their good lung. They survive but require a ventilator for weeks." }
+                ]
+            },
+            {
+                text: "Tape a sterile occlusive dressing over the area on 3 sides.",
+                instructorComment: "That is the treatment for an OPEN sucking chest wound! The skin here is intact, the bones are just broken. You are taping unbroken skin.",
+                followUps: [
+                    { text: "Step back and admire your tape job.", outcome: "death", rationale: "While you were playing arts and crafts, they died of severe hypoxia from the flail chest." },
+                    { text: "Give them a paper bag to breathe into.", outcome: "death", rationale: "They are dying from lack of oxygen, not hyperventilating. You suffocated them. Dead." },
+                    { text: "Realize your tape is useless and grab the Bag-Valve-Mask.", outcome: "stability", rationale: "You bagged them, providing the positive pressure 'internal splint' they desperately needed. Good recovery." }
+                ]
+            },
+            {
+                text: "Administer high-flow Oxygen via a simple face mask.",
+                instructorComment: "Oxygen is great, but a simple mask doesn't provide POSITIVE PRESSURE. The mechanical bellows of their chest are broken. The air won't go in.",
+                followUps: [
+                    { text: "Increase the oxygen to 15 Liters.", outcome: "death", rationale: "It doesn't matter how much oxygen you blow at their face if their lungs can't physically expand to pull it in. They code." },
+                    { text: "Give a massive dose of Morphine.", outcome: "death", rationale: "You knocked out their respiratory drive entirely. With a broken chest and no drive to breathe, they died instantly." },
+                    { text: "Call Respiratory Therapy for a BiPAP machine.", outcome: "rehab", rationale: "RT saves the day with positive pressure, but your delay caused a severe hypoxic brain injury. Rehab required." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "ob_rupture",
+        scenario: "A patient attempting a Vaginal Birth After Cesarean (VBAC) suddenly screams in agonizing, tearing pain between contractions. The fetal heart monitor plummets to 70 bpm, and her contractions abruptly STOP.",
+        options: [
+            {
+                text: "Identify Uterine Rupture and prepare for an immediate STAT C-Section.",
+                instructorComment: "The old C-section scar just tore open! The baby has slipped out of the uterus into the mother's abdominal cavity. This is a catastrophic emergency.",
+                followUps: [
+                    { text: "Start massive IV fluid resuscitation and blood transfusions.", outcome: "stability", rationale: "Flawless! You recognized the rupture, prepped the OR, and managed the maternal hemorrhagic shock. The surgeon saves both lives! Stability!" },
+                    { text: "Start a Pitocin drip to restart the contractions.", outcome: "death", rationale: "You are chemically whipping a torn uterus. You forced the baby further into the abdominal cavity and caused fatal maternal hemorrhage. Both die." },
+                    { text: "Perform a vigorous fundal massage.", outcome: "death", rationale: "You massaged a torn uterus! You literally pushed the mother's intestines through the tear. She bled to death on the table." }
+                ]
+            },
+            {
+                text: "Perform a sterile vaginal exam to check her dilation.",
+                instructorComment: "The baby is no longer in the birth canal, it's floating in her abdomen. You won't feel anything but blood.",
+                followUps: [
+                    { text: "Push upward to feel the baby's head.", outcome: "death", rationale: "You widened the uterine tear with your hand. The mother went into hypovolemic shock and coded. Both die." },
+                    { text: "Sweep the membranes.", outcome: "death", rationale: "There are no membranes left, the uterus is ripped open. Fatal hemorrhage." },
+                    { text: "Pull your hand out and scream for the surgeon.", outcome: "rehab", rationale: "You realized it was empty and panicked. The OR team saves them, but the baby suffers severe hypoxic brain injury from the delay." }
+                ]
+            },
+            {
+                text: "Tell her it's just normal transition pain and tell her to push.",
+                instructorComment: "Pushing when the uterus is ruptured will force her organs out of the tear. You are actively killing her.",
+                followUps: [
+                    { text: "Have her hold her breath and bear down hard.", outcome: "death", rationale: "The immense pressure ripped her uterus completely in half. She bled to death in less than two minutes." },
+                    { text: "Use forceps to try and grab the baby.", outcome: "death", rationale: "The baby isn't there! You blindly grabbed maternal organs with forceps. Unspeakable malpractice. Both die." },
+                    { text: "Look at the fetal monitor, see the 70 bpm, and call a code.", outcome: "rehab", rationale: "You finally looked at the baby's heart rate. Emergency surgery saves the mother, but she loses her uterus completely (hysterectomy)." }
+                ]
+            },
+            {
+                text: "Administer an IV fluid bolus to fix the baby's heart rate.",
+                instructorComment: "Fluids are great for the mother's bleeding, but the baby's heart rate is dropping because it's floating in a pool of blood outside the uterus! Fluids won't fix that.",
+                followUps: [
+                    { text: "Wait 15 minutes to see if the heart rate improves.", outcome: "death", rationale: "The baby suffocated and died in the mother's abdomen. The mother bled to death shortly after." },
+                    { text: "Give the mother an epidural bolus for the pain.", outcome: "death", rationale: "The epidural dropped her blood pressure, combining with the massive hemorrhage to cause instant cardiac arrest." },
+                    { text: "Run the fluids wide open and push the bed to the OR.", outcome: "stability", rationale: "You used the fluids as a bridge while sprinting to surgery. The surgeon opens her up in time. Good save." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "resp_chesttube",
+        scenario: "The physician is at the bedside preparing to remove a patient's chest tube. They ask you to instruct the patient on how to breathe during the removal.",
+        options: [
+            {
+                text: "Instruct the patient to take a deep breath, hold it, and bear down (Valsalva maneuver).",
+                instructorComment: "Perfect! The Valsalva maneuver increases intrathoracic pressure, ensuring that no outside air gets sucked into the pleural space when the tube is pulled.",
+                followUps: [
+                    { text: "Have a sterile occlusive dressing (petroleum gauze) ready to apply immediately.", outcome: "stability", rationale: "Textbook procedure! The tube comes out, the pressure keeps the lung inflated, and the dressing seals the hole. Hemodynamic stability achieved!" },
+                    { text: "Apply a dry 4x4 gauze pad loosely over the hole.", outcome: "rehab", rationale: "A dry gauze doesn't seal the hole! Air leaked in every time they breathed. They developed a small pneumothorax requiring another chest tube." },
+                    { text: "Leave the hole open to the air.", outcome: "death", rationale: "You created an open sucking chest wound. The lung collapsed, causing a fatal tension pneumothorax." }
+                ]
+            },
+            {
+                text: "Instruct the patient to pant quickly like a dog during removal.",
+                instructorComment: "Panting causes negative pressure in the chest. You are going to suck room air directly into their chest cavity.",
+                followUps: [
+                    { text: "The doctor pulls the tube while they pant.", outcome: "death", rationale: "They sucked a massive volume of air through the hole. The lung instantly collapsed. Fatal tension pneumothorax." },
+                    { text: "Tell them to breathe normally.", outcome: "death", rationale: "Normal inspiration still creates negative pressure! The lung collapses. Dead." },
+                    { text: "Correct yourself and tell them to bear down instead.", outcome: "stability", rationale: "You remembered the Valsalva maneuver just in time. The removal goes smoothly. Pass." }
+                ]
+            },
+            {
+                text: "Instruct the patient to exhale completely and hold their breath on empty lungs.",
+                instructorComment: "Exhaling completely lowers intrathoracic pressure. When the tube comes out, air will rush in to fill the vacuum.",
+                followUps: [
+                    { text: "Apply the sterile petroleum dressing.", outcome: "rehab", rationale: "You applied the right dressing, but the breathing technique was wrong. A small amount of air got in, causing a 20% pneumothorax. Minor surgery needed." },
+                    { text: "Give them a cough drop.", outcome: "death", rationale: "They choked on the cough drop when the lung collapsed from the air leak. Fatal asphyxiation." },
+                    { text: "Wait for them to inhale before pulling.", outcome: "death", rationale: "Inhaling is the absolute worst time to pull it! Massive air sucked into the chest. Dead." }
+                ]
+            },
+            {
+                text: "Administer a massive dose of IV Morphine so they sleep through it.",
+                instructorComment: "If they are asleep, they can't perform the Valsalva maneuver! You just guaranteed an air leak.",
+                followUps: [
+                    { text: "The doctor pulls the tube while they are asleep.", outcome: "death", rationale: "The sleeping patient took a breath, sucking air into the pleural cavity. They died of a tension pneumo in their sleep." },
+                    { text: "Put them on a ventilator first.", outcome: "death", rationale: "You intubated someone for a 5-second bedside procedure? The positive pressure blew out their remaining lung tissue. Dead." },
+                    { text: "Wake them up with Narcan.", outcome: "rehab", rationale: "You slammed them with Narcan, causing immense pain and withdrawal, but they were awake to bear down. Brutal, but they lived." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "renal_hypermag",
+        scenario: "A patient with End-Stage Renal Disease (ESRD) arrives in the ER. They admit to drinking a whole bottle of Milk of Magnesia for constipation. Their HR is 42, BP 80/40, and deep tendon reflexes are completely absent.",
+        options: [
+            {
+                text: "Identify Hypermagnesemia and prepare IV Calcium Gluconate.",
+                instructorComment: "Yes! Magnesium is a smooth muscle relaxant. Too much of it paralyzes the body. Calcium is the direct antagonist to Magnesium toxicity.",
+                followUps: [
+                    { text: "Administer the IV Calcium and prepare for emergency dialysis.", outcome: "stability", rationale: "Flawless! The Calcium restarted the heart and muscles, and dialysis physically removed the toxic Magnesium from the blood. Stability!" },
+                    { text: "Administer IV Potassium.", outcome: "death", rationale: "Potassium stops the heart in high doses. You just mixed it with a failing heart. Instant cardiac arrest." },
+                    { text: "Give them another dose of laxatives to flush it out.", outcome: "death", rationale: "You gave them MORE Magnesium?! Their diaphragm paralyzed entirely and they suffocated to death." }
+                ]
+            },
+            {
+                text: "Administer a Fleet Enema to clear the bowels.",
+                instructorComment: "Fleet Enemas are full of Phosphorus and Sodium! ESRD patients cannot filter those out. You are giving them a second lethal electrolyte imbalance.",
+                followUps: [
+                    { text: "Wait for the enema to work.", outcome: "death", rationale: "The Magnesium paralyzed their bowels, so the enema sat there and absorbed into the blood. The Phosphorus spiked and stopped their heart. Dead." },
+                    { text: "Give them IV Lasix to help them pee.", outcome: "death", rationale: "They have END-STAGE RENAL DISEASE. Their kidneys don't make urine! The Lasix did nothing, and the Mag toxicity killed them." },
+                    { text: "Realize the danger and push IV Calcium Gluconate.", outcome: "rehab", rationale: "You finally gave the antidote, but the delay caused a hypoxic brain injury from the respiratory depression. Rehab." }
+                ]
+            },
+            {
+                text: "Stimulate the patient and tell them to breathe deeply.",
+                instructorComment: "They physically CANNOT breathe deeply. The Magnesium has paralyzed their diaphragm. Talking to them won't fix it.",
+                followUps: [
+                    { text: "Put a non-rebreather mask on them.", outcome: "death", rationale: "Oxygen doesn't work if the mechanical bellows (lungs) are paralyzed. They suffocated while wearing the mask." },
+                    { text: "Start chest compressions.", outcome: "death", rationale: "They have a pulse of 42! You crushed their chest and caused fatal internal bleeding." },
+                    { text: "Grab the Bag-Valve-Mask and ventilate them.", outcome: "rehab", rationale: "You bagged them to keep them alive, but they still need the Calcium antidote and dialysis. Prolonged ICU stay." }
+                ]
+            },
+            {
+                text: "Assume they are just sleepy and document the findings.",
+                instructorComment: "Absent reflexes and a HR of 42 is not 'sleepy', it is actively dying. You are a terrible nurse.",
+                followUps: [
+                    { text: "Turn off the lights.", outcome: "death", rationale: "They died in the dark of respiratory paralysis." },
+                    { text: "Give them a warm blanket.", outcome: "death", rationale: "They died under a warm blanket." },
+                    { text: "The monitor alarms, so you call a code.", outcome: "rehab", rationale: "You waited until their heart stopped. They were resuscitated, but suffered massive brain damage." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "gi_paracentesis",
+        scenario: "Your patient with liver cirrhosis just had a paracentesis where 8 Liters of ascites fluid was drained. 30 minutes later, they complain of severe dizziness. BP is 70/40, HR is 135.",
+        options: [
+            {
+                text: "Identify Paracentesis-Induced Circulatory Dysfunction (Hypovolemic Shock) and request IV Albumin.",
+                instructorComment: "Yes! When you remove massive amounts of fluid from the belly, the blood vessels dilate to fill the empty space, tanking the blood pressure. Albumin pulls the fluid back into the vessels.",
+                followUps: [
+                    { text: "Administer the IV Albumin and position them flat.", outcome: "stability", rationale: "Textbook! The Albumin (a colloid) rapidly restores oncotic pressure and pulls fluid back into the vascular space. BP normalizes. Stability!" },
+                    { text: "Administer IV Lasix to remove more fluid.", outcome: "death", rationale: "They are in hypovolemic shock (BP 70/40)! You gave a diuretic and drained the last drop of fluid from their body. Fatal cardiac arrest." },
+                    { text: "Sit them straight up.", outcome: "death", rationale: "Gravity pulled all the remaining blood out of their brain. They passed out, seized, and died of cerebral anoxia." }
+                ]
+            },
+            {
+                text: "Administer an IV fluid bolus of 0.45% Normal Saline (Hypotonic).",
+                instructorComment: "Hypotonic fluids leave the blood vessels and go straight into the tissues. You are just going to put the fluid right back into their ascites belly!",
+                followUps: [
+                    { text: "Run it wide open.", outcome: "death", rationale: "The fluid leaked instantly into their peritoneal cavity. The BP stayed at 70/40 and they died of distributive shock." },
+                    { text: "Give them a glass of water to drink.", outcome: "death", rationale: "Water is also hypotonic. They passed out and choked on the water. Dead." },
+                    { text: "Realize you need a colloid and switch to IV Albumin.", outcome: "rehab", rationale: "You fixed your fluid mistake, but the severe hypotension caused acute tubular necrosis in their kidneys. Dialysis needed." }
+                ]
+            },
+            {
+                text: "Tell them it's normal to feel lightheaded after the procedure.",
+                instructorComment: "A BP of 70/40 is not 'lightheaded', it is cardiogenic collapse. Do your job.",
+                followUps: [
+                    { text: "Walk them to the bathroom.", outcome: "death", rationale: "They stood up, all the blood left their brain, they fell, cracked their skull open, and died on the bathroom floor." },
+                    { text: "Check their temperature.", outcome: "death", rationale: "While you were checking for a fever, their heart stopped from lack of blood volume. Dead." },
+                    { text: "Notice the BP and call a Rapid Response.", outcome: "rehab", rationale: "The ICU team arrives and hangs the Albumin. You survived, but the patient requires an ICU transfer." }
+                ]
+            },
+            {
+                text: "Administer Sublingual Nitroglycerin.",
+                instructorComment: "Nitro is a potent vasodilator! Their blood pressure is 70/40 because their vessels are already massively dilated. You are crazy.",
+                followUps: [
+                    { text: "Give a second dose when they pass out.", outcome: "death", rationale: "You actively murdered this patient by removing all venous return to the heart. Instant flatline." },
+                    { text: "Call a Code STEMI.", outcome: "death", rationale: "They don't have a heart attack, they have no blood volume! They died on the way to the Cath Lab." },
+                    { text: "Read the BP, panic, and lay them flat instead.", outcome: "stability", rationale: "You didn't give the Nitro, laid them flat to preserve brain perfusion, and called the doctor. Lucky save." }
+                ]
+            }
+        ]
+    },
+{
+        id: "peds_pyloric",
+        scenario: "A 4-week-old infant is brought in for projectile vomiting after every feed. The baby is constantly hungry. An ABG shows: pH 7.52, PaCO2 42, HCO3 34. You palpate an 'olive-shaped' mass in the right upper quadrant.",
+        options: [
+            {
+                text: "Identify Pyloric Stenosis and start IV Normal Saline.",
+                instructorComment: "They are puking out all their stomach acid, causing metabolic alkalosis and severe dehydration. Fixing the fluid deficit before surgery is the only right answer.",
+                followUps: [
+                    { text: "Keep the baby NPO and prep for a pyloromyotomy.", outcome: "stability", rationale: "Textbook! You rehydrated the infant, corrected the alkalosis, and prepped them for the surgical fix. The baby thrives. Stability!" },
+                    { text: "Push IV Bicarbonate to fix the ABG.", outcome: "death", rationale: "Their pH is 7.52! They are already alkalotic. You just pushed them into a fatal metabolic alkalosis. Brain death." },
+                    { text: "Give them a large bottle of formula to test their swallow.", outcome: "rehab", rationale: "They projectile vomited the entire bottle into their own lungs. You caused massive aspiration pneumonia. PICU needed." }
+                ]
+            },
+            {
+                text: "Have the baby breathe into a paper bag.",
+                instructorComment: "This is metabolic alkalosis, not respiratory alkalosis! They aren't hyperventilating, they are vomiting.",
+                followUps: [
+                    { text: "Tape the bag over their face.", outcome: "death", rationale: "You suffocated a 4-week-old baby with a paper bag. The Board of Nursing is referring you to the police." },
+                    { text: "Hold it there for 10 minutes.", outcome: "death", rationale: "They vomited inside the bag and inhaled their own acidic vomit. Fatal asphyxiation." },
+                    { text: "Realize they are just puking and start an IV.", outcome: "rehab", rationale: "You stopped your ridiculous bag trick, but the delay in hydration caused severe acute kidney injury. Rehab required." }
+                ]
+            },
+            {
+                text: "Administer a PO antiemetic (Zofran) to stop the vomiting.",
+                instructorComment: "The sphincter of their stomach is physically hypertrophied (swollen shut). Medicine cannot open a mechanical blockage.",
+                followUps: [
+                    { text: "Send them home.", outcome: "death", rationale: "They went home, completely dehydrated, and died of hypovolemic shock in their crib." },
+                    { text: "Force-feed them pureed food.", outcome: "death", rationale: "They vomited the pureed food with enough force to aspirate deeply into their bronchioles. Dead." },
+                    { text: "Notice the olive mass and call the surgeon.", outcome: "rehab", rationale: "You figured it out late. The severe dehydration caused a seizure before surgery. Brain damage possible." }
+                ]
+            },
+            {
+                text: "Massage the olive-shaped mass vigorously.",
+                instructorComment: "You are forcefully squeezing a swollen, inflamed pyloric sphincter. This is essentially torture.",
+                followUps: [
+                    { text: "Push deep into the abdomen.", outcome: "death", rationale: "You ruptured their stomach. Massive peritonitis and septic shock. They died." },
+                    { text: "Feed them while massaging.", outcome: "death", rationale: "They projectile vomited so hard they tore their esophagus (Mallory-Weiss tear). Exsanguination." },
+                    { text: "Stop and consult pediatric surgery.", outcome: "stability", rationale: "You stopped assaulting the infant and got the actual expert. The surgeon fixes it. You pass." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "ob_shoulder",
+        scenario: "During a vaginal delivery, the fetal head emerges, but then immediately retracts tightly against the mother's perineum ('turtle sign'). The baby is stuck.",
+        options: [
+            {
+                text: "Identify Shoulder Dystocia and perform the McRoberts maneuver.",
+                instructorComment: "Yes! The anterior shoulder is stuck behind the pubic bone. Flexing the mother's thighs sharply to her abdomen flattens the sacrum and opens the pelvis.",
+                followUps: [
+                    { text: "Apply downward suprapubic pressure.", outcome: "stability", rationale: "Flawless! McRoberts plus suprapubic pressure dislodged the shoulder. The baby is born safely with APGARs of 8 and 9. Stability!" },
+                    { text: "Apply aggressive fundal pressure.", outcome: "death", rationale: "Fundal pressure pushes the baby's shoulder HARDER into the pubic bone! You ruptured the mother's uterus and crushed the baby. Both die." },
+                    { text: "Pull as hard as you can on the baby's head.", outcome: "rehab", rationale: "You ripped the brachial plexus nerve. The baby is born alive but with permanent Erb's Palsy (paralyzed arm). Massive lawsuit." }
+                ]
+            },
+            {
+                text: "Apply aggressive pressure to the top of the fundus.",
+                instructorComment: "Fundal pressure in a shoulder dystocia is strictly contraindicated! You are turning a stuck baby into a crushed baby.",
+                followUps: [
+                    { text: "Push with your entire body weight.", outcome: "death", rationale: "The mother's uterus violently ruptured. She bled to death internally while the baby suffocated in the birth canal." },
+                    { text: "Have another nurse help you push.", outcome: "death", rationale: "Double the manslaughter! The baby's neck was fractured against the pubic bone. Tragic." },
+                    { text: "Realize it's not working and switch to suprapubic pressure.", outcome: "rehab", rationale: "You fixed your hand placement, but the initial fundal pressure caused fetal hypoxia. NICU stay required." }
+                ]
+            },
+            {
+                text: "Tell the mother to push as hard and fast as she can.",
+                instructorComment: "The baby is physically wedged against her skeleton. Pushing harder without changing her position is like driving a car into a brick wall.",
+                followUps: [
+                    { text: "Yell at her to push harder.", outcome: "death", rationale: "The umbilical cord became completely compressed. The baby suffered fatal anoxia before delivery." },
+                    { text: "Use forceps to pull the head while she pushes.", outcome: "death", rationale: "You decapitated the baby. This is a real, horrific complication of pulling during dystocia. Your career is over." },
+                    { text: "Drop the head and put her in a knee-chest position.", outcome: "stability", rationale: "You accidentally flipped her into a position that opened the pelvis (Gaskin maneuver). The baby pops out. Lucky." }
+                ]
+            },
+            {
+                text: "Push the baby's head back inside and run to the OR.",
+                instructorComment: "The Zavanelli maneuver. This is a desperate, last-resort death-mary. You haven't even tried basic positioning yet!",
+                followUps: [
+                    { text: "Leave the room to get the surgeon.", outcome: "death", rationale: "You abandoned a mother in active dystocia. The baby suffocated and died in the birth canal." },
+                    { text: "Try to manually turn the baby.", outcome: "death", rationale: "You performed the Woods Corkscrew wrong and tore the umbilical cord. Fetal exsanguination." },
+                    { text: "The surgeon arrives and does an emergency C-section.", outcome: "rehab", rationale: "The Zavanelli worked, but the immense trauma caused massive hemorrhage for the mom and hypoxic injury to the baby. Severe rehab." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "psych_eps",
+        scenario: "A schizophrenic patient received IM Haloperidol 2 hours ago for agitation. You walk in to find their neck violently twisted to one side (torticollis) and their eyes rolled up into the back of their head.",
+        options: [
+            {
+                text: "Identify an Acute Dystonic Reaction and push IV Benztropine (Cogentin).",
+                instructorComment: "Extrapyramidal Symptoms (EPS)! The antipsychotic blocked too much dopamine, causing severe muscle spasms. The anticholinergic is the cure.",
+                followUps: [
+                    { text: "Administer the IV Benztropine and monitor the airway.", outcome: "stability", rationale: "Perfect! The spasm melts away in minutes. Their eyes return to normal and their neck relaxes. Stability achieved!" },
+                    { text: "Administer MORE Haloperidol to calm the spasm.", outcome: "death", rationale: "You gave them MORE of the poison! The dystonia spread to their larynx, their airway clamped shut, and they suffocated." },
+                    { text: "Put them in physical restraints.", outcome: "death", rationale: "You tied down a patient suffering an agonizing neurological spasm. They choked on their own saliva and died." }
+                ]
+            },
+            {
+                text: "Assume they are having a seizure and push IV Lorazepam (Ativan).",
+                instructorComment: "This isn't a seizure! They are fully conscious, just locked in a painful muscle spasm. Benzos won't fix the dopamine blockade.",
+                followUps: [
+                    { text: "Wait for the Ativan to work.", outcome: "death", rationale: "The Ativan knocked out their respiratory drive while the dystonia locked their jaw. They stopped breathing and died." },
+                    { text: "Push IV Phenytoin next.", outcome: "death", rationale: "You are throwing seizure meds at a patient who isn't seizing. The dystonia reaches their airway. Dead." },
+                    { text: "Realize it's EPS and push Diphenhydramine (Benadryl).", outcome: "rehab", rationale: "IV Benadryl works for EPS! But you also sedated them heavily with the Ativan. They survive but require close airway monitoring." }
+                ]
+            },
+            {
+                text: "Tell them to stop acting out and leave the room.",
+                instructorComment: "Oculogyric crisis is involuntary! They literally cannot move their eyes or neck. You are an abusive nurse.",
+                followUps: [
+                    { text: "Close the door.", outcome: "death", rationale: "The dystonia spread to their laryngeal muscles. They suffocated to death alone in their room." },
+                    { text: "Document non-compliance.", outcome: "death", rationale: "You documented that a dying patient was 'faking it.' The lawsuit will be legendary." },
+                    { text: "Call the psychiatrist to complain.", outcome: "rehab", rationale: "The psychiatrist rushes to the unit, shoves you aside, and gives the Cogentin. You are fired immediately." }
+                ]
+            },
+            {
+                text: "Vigorously massage their neck to work out the cramp.",
+                instructorComment: "You are trying to massage away a severe neurochemical blockade. This is like putting a band-aid on a gunshot wound.",
+                followUps: [
+                    { text: "Push their head back to the center.", outcome: "death", rationale: "You forcefully snapped their neck against a locked spasm. You severed their spinal cord. Instant paralysis and death." },
+                    { text: "Apply a heating pad.", outcome: "death", rationale: "The heat did nothing. The laryngeal spasm hit, and they suffocated while you rubbed their shoulders." },
+                    { text: "Notice they can't breathe and call a code.", outcome: "rehab", rationale: "The code team pushes the Benztropine. They survive, but the anoxia from the airway spasm caused brain damage." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "fundamentals_fire",
+        scenario: "You walk into a patient's room and see that the trash can next to their oxygen concentrator is engulfed in flames.",
+        options: [
+            {
+                text: "Implement RACE: Rescue the patient, Sound the Alarm, Confine the fire, Extinguish.",
+                instructorComment: "Fundamentals 101! You cannot fight a fire while the patient is burning in their bed. Rescue first!",
+                followUps: [
+                    { text: "Pull the patient into the hallway and close the door.", outcome: "stability", rationale: "Flawless! You saved the life, confined the fire by closing the door, and the sprinklers handled the rest. Hero status: Stability!" },
+                    { text: "Leave the door open so the smoke clears.", outcome: "death", rationale: "You left the door open! The fire spread to the hallway, trapping 10 other patients who all perished in the blaze. Epic fail." },
+                    { text: "Throw a cup of water on the oxygen concentrator.", outcome: "death", rationale: "Water on an electrical fire next to an oxygen source. You created a literal bomb. The explosion took out the entire wing." }
+                ]
+            },
+            {
+                text: "Grab the fire extinguisher and use PASS to fight the fire.",
+                instructorComment: "You are prioritizing the trash can over the human being breathing in toxic smoke. You are not a firefighter.",
+                followUps: [
+                    { text: "Aim at the top of the flames.", outcome: "death", rationale: "PASS means Pull, Aim at the BASE. You aimed high, the fire spread to the O2 tank, and the patient exploded. Dead." },
+                    { text: "Spray the extinguisher directly at the patient.", outcome: "death", rationale: "You suffocated the patient with chemical foam while the fire burned the room down." },
+                    { text: "Realize the fire is too big, drop the extinguisher, and grab the patient.", outcome: "rehab", rationale: "You wasted time, so the patient suffered severe smoke inhalation and 2nd-degree burns. Months in the burn unit." }
+                ]
+            },
+            {
+                text: "Run to the nurse's station to call 911.",
+                instructorComment: "You just left a bedbound patient alone in a burning room with an active oxygen supply.",
+                followUps: [
+                    { text: "Wait at the desk for the fire department.", outcome: "death", rationale: "The oxygen tank detonated. The patient was incinerated. You are going to prison for abandonment." },
+                    { text: "Go back to the room with a wet towel.", outcome: "death", rationale: "The room was entirely engulfed by the time you returned. You both died in the fire." },
+                    { text: "Yell for help while running back to drag them out.", outcome: "rehab", rationale: "Other nurses heard you and helped drag the patient out. They survive with massive lung damage from the smoke." }
+                ]
+            },
+            {
+                text: "Turn off the patient's oxygen so it doesn't feed the fire.",
+                instructorComment: "Turning off the O2 is a good thought, but the fire is already roaring. You need to get them OUT.",
+                followUps: [
+                    { text: "Stay in the room to try and stomp the fire out.", outcome: "death", rationale: "Your scrubs caught fire. You and the patient both burned to death." },
+                    { text: "Open the window to let the smoke out.", outcome: "death", rationale: "Opening the window provided a massive rush of oxygen. The fire caused a backdraft explosion. Dead." },
+                    { text: "Turn off the O2, pull them out of bed, and run.", outcome: "stability", rationale: "You removed the fuel source and rescued the patient. The burn unit is proud of you. Pass." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "endo_myxedema",
+        scenario: "A patient with Hashimoto's Thyroiditis who stopped taking their Levothyroxine 3 months ago is brought in comatose. Their temp is 93.0°F, HR is 42, and RR is 6.",
+        options: [
+            {
+                text: "Identify Myxedema Coma, prepare to intubate, and give IV Levothyroxine.",
+                instructorComment: "Yes! Their metabolism has ground to an absolute halt. The respiratory drive is failing. Secure the airway and replace the hormone.",
+                followUps: [
+                    { text: "Warm them slowly with normal blankets.", outcome: "stability", rationale: "Textbook! Slow warming prevents cardiovascular collapse. The IV thyroid hormone restarts their metabolism. Stability achieved!" },
+                    { text: "Warm them rapidly with a Bair Hugger and hot packs.", outcome: "death", rationale: "Rapid warming causes massive peripheral vasodilation! Their blood pressure dropped to zero and they died of distributive shock." },
+                    { text: "Push IV Amiodarone for the bradycardia.", outcome: "death", rationale: "Amiodarone contains iodine and can completely shut down a failing thyroid! You executed them." }
+                ]
+            },
+            {
+                text: "Apply active, aggressive external warming to fix the 93.0°F temp.",
+                instructorComment: "Their body is frozen. If you warm the skin too fast, all their blood will rush to the surface, leaving their heart and brain completely empty.",
+                followUps: [
+                    { text: "Turn the Bair Hugger to maximum heat.", outcome: "death", rationale: "Massive vasodilation occurred. BP plummeted to 40/palpable. Heart stopped from lack of preload. Dead." },
+                    { text: "Put them in a hot bath.", outcome: "death", rationale: "They are comatose! They drowned in the bathtub while you tried to boil them. Malpractice." },
+                    { text: "Realize the BP is dropping and switch to slow passive warming.", outcome: "rehab", rationale: "You caught the shock state early. The ICU saves them with vasopressors, but the hypoxic brain injury is severe." }
+                ]
+            },
+            {
+                text: "Administer IV Atropine to speed up the heart rate.",
+                instructorComment: "The heart rate is 42 because the thyroid isn't telling it to beat, not because of a vagal issue! Atropine won't fix a lack of T4.",
+                followUps: [
+                    { text: "Give a second dose of Atropine.", outcome: "death", rationale: "It did nothing. Their respiratory rate dropped to zero. They suffocated in a myxedema coma." },
+                    { text: "Start a Dopamine drip.", outcome: "death", rationale: "Vasopressors don't work well without thyroid hormone to sensitize the receptors. They coded and died." },
+                    { text: "Call Anesthesia to intubate.", outcome: "stability", rationale: "You ignored the HR but secured the failing airway! The breathing tube kept them alive until the endocrinologist arrived." }
+                ]
+            },
+            {
+                text: "Administer IV Lorazepam because they might be seizing.",
+                instructorComment: "They are in a coma with a respiratory rate of 6, and you want to give a massive respiratory depressant?",
+                followUps: [
+                    { text: "Push the Benzodiazepine quickly.", outcome: "death", rationale: "You knocked out their last 6 breaths per minute. They stopped breathing instantly and died." },
+                    { text: "Check their pupils.", outcome: "death", rationale: "Their pupils are fixed. You killed them with the Ativan." },
+                    { text: "Read their chart, see Hashimoto's, and push Levothyroxine.", outcome: "rehab", rationale: "You gave the cure, but you also knocked out their lungs with the Benzo. They need a week on a ventilator." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "gi_varices",
+        scenario: "Your cirrhosis patient suddenly vomits a massive amount of bright red blood. The doctor places a Sengstaken-Blakemore tube to tamponade the bleeding varices. Suddenly, the patient gasps, clutches their throat, and turns blue.",
+        options: [
+            {
+                text: "Grab scissors and cut the Sengstaken-Blakemore tube immediately.",
+                instructorComment: "Yes! The gastric balloon ruptured or deflated, and the entire tube migrated UP into their airway. Cutting the tube deflates all balloons instantly.",
+                followUps: [
+                    { text: "Pull the tube out and apply Oxygen.", outcome: "stability", rationale: "Flawless emergency action! You cleared the airway obstruction. They can breathe again. Stability!" },
+                    { text: "Leave the cut tube in their throat.", outcome: "death", rationale: "You deflated it but didn't remove the physical obstruction. They choked to death on the plastic." },
+                    { text: "Try to push the tube back down their throat.", outcome: "death", rationale: "You pushed a bloody, deflated tube straight into their trachea. Fatal asphyxiation." }
+                ]
+            },
+            {
+                text: "Inflate the esophageal balloon with more air.",
+                instructorComment: "The tube has migrated into their windpipe, and you want to inflate a balloon inside their trachea?",
+                followUps: [
+                    { text: "Push 50cc of air in.", outcome: "death", rationale: "You completely crushed their trachea from the inside. They suffocated in sheer agony. You are a murderer." },
+                    { text: "Check their oxygen saturation.", outcome: "death", rationale: "It's 0%. They died while you pumped air into their lungs via the wrong tube." },
+                    { text: "Realize they are choking and cut the tube.", outcome: "rehab", rationale: "You almost killed them, but cutting it saved their life. The anoxia caused brain damage. Rehab required." }
+                ]
+            },
+            {
+                text: "Lay them completely flat and start chest compressions.",
+                instructorComment: "They have a pulse! They are choking on a medical device. Compressions won't clear an airway blocked by an inflated balloon.",
+                followUps: [
+                    { text: "Push hard and fast.", outcome: "death", rationale: "You broke their ribs and forced the balloon deeper into their airway. Dead." },
+                    { text: "Defibrillate them.", outcome: "death", rationale: "You shocked a choking patient. Ventricular Fibrillation ensues. Fatal." },
+                    { text: "Stop CPR and pull the tube out.", outcome: "rehab", rationale: "You finally removed the choking hazard, but the unnecessary CPR ruptured their fragile cirrhotic liver. Massive internal bleeding." }
+                ]
+            },
+            {
+                text: "Administer IV Propranolol to lower portal hypertension.",
+                instructorComment: "Propranolol prevents varices from bleeding long-term. It does absolutely nothing for a patient actively choking to death on a migrated tube.",
+                followUps: [
+                    { text: "Give them a glass of water.", outcome: "death", rationale: "They are turning blue with a tube in their throat and you offered them water. They died." },
+                    { text: "Call the GI doctor.", outcome: "death", rationale: "While you were on hold, the patient suffocated. Always have scissors at the bedside for Blakemore tubes!" },
+                    { text: "Notice the distress and grab the scissors.", outcome: "stability", rationale: "You snapped out of your daze and cut the tube. The airway is clear. Good save." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "renal_peritonitis",
+        scenario: "A patient managing End-Stage Renal Disease with Peritoneal Dialysis at home comes to the clinic. They report severe abdominal pain, and their drained dialysate fluid is completely cloudy and opaque.",
+        options: [
+            {
+                text: "Identify Peritonitis, collect a fluid sample for culture, and notify the provider.",
+                instructorComment: "Cloudy effluent = Peritonitis until proven otherwise. You recognized the infection in their peritoneal cavity. Good job.",
+                followUps: [
+                    { text: "Prepare to administer intraperitoneal antibiotics.", outcome: "stability", rationale: "Textbook! You caught the infection, cultured it, and delivered antibiotics directly to the site via the dialysate. Stability!" },
+                    { text: "Administer a massive IV fluid bolus.", outcome: "death", rationale: "They have ESRD! Their kidneys don't work. You fluid-overloaded them, caused flash pulmonary edema, and they drowned." },
+                    { text: "Tell them to skip their next dialysis exchange.", outcome: "death", rationale: "Skipping the exchange allows the bacteria to multiply unchecked and toxic waste to build up. Fatal uremia and sepsis." }
+                ]
+            },
+            {
+                text: "Tell the patient this is normal protein loss and send them home.",
+                instructorComment: "Cloudy fluid is NEVER normal. You just sent a patient home with a raging intra-abdominal infection.",
+                followUps: [
+                    { text: "Tell them to drink more water.", outcome: "death", rationale: "They went home, the peritonitis turned into systemic septic shock, and they died 24 hours later." },
+                    { text: "Give them Tylenol for the abdominal pain.", outcome: "death", rationale: "You masked the pain of their dying organs. Fatal septic shock." },
+                    { text: "Call them back from the parking lot.", outcome: "rehab", rationale: "You double-checked your textbook and panicked. They survive the sepsis but lose the ability to use peritoneal dialysis forever. Hemodialysis required." }
+                ]
+            },
+            {
+                text: "Instill a rapid, ice-cold dialysate exchange to flush the infection.",
+                instructorComment: "Dialysate should always be WARMED. Pushing ice-cold fluid into the peritoneal cavity causes excruciating cramping and hypothermia.",
+                followUps: [
+                    { text: "Push the fluid in under pressure.", outcome: "death", rationale: "The extreme cold caused a massive vagal response. Their heart rate plummeted and they went into cardiac arrest." },
+                    { text: "Tell them to tough out the cramping.", outcome: "death", rationale: "The cold fluid didn't fix the infection. They died of peritonitis while freezing." },
+                    { text: "Stop the cold infusion and draw cultures.", outcome: "rehab", rationale: "You stopped torturing them, but the delay allowed the infection to spread. ICU admission for sepsis." }
+                ]
+            },
+            {
+                text: "Administer a fleet enema for the abdominal pain.",
+                instructorComment: "They have peritonitis, not constipation! An enema can cause a bowel perforation in an already inflamed abdomen.",
+                followUps: [
+                    { text: "Push the enema hard.", outcome: "death", rationale: "You perforated their bowel! Feces flooded their infected peritoneal cavity. Instant septic shock and death." },
+                    { text: "Give them a laxative pill too.", outcome: "death", rationale: "You actively destroyed their GI tract. The inflammation killed them." },
+                    { text: "Realize the fluid is cloudy and start antibiotics.", outcome: "stability", rationale: "You ignored the enema idea and treated the infection. You barely passed." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "peds_reyes",
+        scenario: "A 7-year-old recovering from Influenza B develops sudden, intractable vomiting and severe lethargy. The parents state they gave him 'baby aspirin' for his fever three days ago.",
+        options: [
+            {
+                text: "Identify Reye Syndrome, check liver enzymes/ammonia, and prep for high ICP.",
+                instructorComment: "Aspirin + Viral Infection in a child = Reye Syndrome. The liver fails and the brain swells. Excellent catch.",
+                followUps: [
+                    { text: "Elevate the HOB to 30 degrees and minimize stimulation.", outcome: "stability", rationale: "Perfect! You managed the intracranial pressure from the brain swelling. The liver slowly recovers. The child survives intact!" },
+                    { text: "Administer MORE Aspirin to bring down any new fever.", outcome: "death", rationale: "You literally poisoned the child with the exact drug causing their liver and brain to fail. Fatal hepatic coma." },
+                    { text: "Perform a Lumbar Puncture to rule out meningitis.", outcome: "death", rationale: "They have massive brain swelling (high ICP)! The LP caused a massive pressure shift. The brainstem herniated. Dead." }
+                ]
+            },
+            {
+                text: "Assume it is just a stomach bug and administer PO Zofran.",
+                instructorComment: "Intractable vomiting with altered mental status after Aspirin use is NEVER a simple stomach bug. You are ignoring encephalopathy.",
+                followUps: [
+                    { text: "Send the child home to rest.", outcome: "death", rationale: "The child's brain swelled until they seized and died in their bed at home." },
+                    { text: "Give them a bottle of Pedialyte.", outcome: "death", rationale: "They choked on the fluids because they were comatose from the brain swelling. Dead." },
+                    { text: "Notice the child is unresponsive and call a code.", outcome: "rehab", rationale: "The child herniated in the ER. They are resuscitated, but suffer permanent, severe brain damage. Institutionalized for life." }
+                ]
+            },
+            {
+                text: "Lay the child completely flat to improve blood flow to the brain.",
+                instructorComment: "Reye Syndrome causes massive cerebral edema. Laying them flat increases intracranial pressure to lethal levels.",
+                followUps: [
+                    { text: "Turn off the lights and let them sleep.", outcome: "death", rationale: "They didn't sleep, they slipped into a fatal coma as their brain was crushed against their skull." },
+                    { text: "Check their pupils.", outcome: "death", rationale: "Pupils are blown and fixed. You killed them by laying them flat." },
+                    { text: "Elevate the head of the bed to 30 degrees instead.", outcome: "rehab", rationale: "You fixed your gravitational mistake, but the ammonia buildup from the liver still caused a seizure. Rehab needed." }
+                ]
+            },
+            {
+                text: "Administer IV Haloperidol (Haldol) for the confusion.",
+                instructorComment: "You are giving a heavy antipsychotic to a child with a failing liver and swelling brain. You are erasing their neurological baseline.",
+                followUps: [
+                    { text: "Push the Haldol fast.", outcome: "death", rationale: "The liver couldn't metabolize the drug. They stopped breathing and died of respiratory arrest." },
+                    { text: "Put them in physical restraints.", outcome: "death", rationale: "Fighting the restraints spiked their Intracranial Pressure. Fatal brain herniation." },
+                    { text: "Call the neurologist for a consult.", outcome: "rehab", rationale: "The neuro doctor diagnoses Reye Syndrome and gives Mannitol. The child survives, but the Haldol complicated the recovery. PICU." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "pharm_extravasation",
+        scenario: "Your patient's peripheral IV infusing Norepinephrine (Levophed) has infiltrated. The IV site and surrounding forearm are blanched, ice-cold, hard, and the skin is turning purple.",
+        options: [
+            {
+                text: "Stop the infusion, aspirate the line, and inject subcutaneous Phentolamine.",
+                instructorComment: "Extravasation of a vesicant! Norepinephrine is a massive vasoconstrictor. You stopped the drug and injected the alpha-blocker antidote to open the vessels.",
+                followUps: [
+                    { text: "Elevate the arm and apply a warm compress.", outcome: "stability", rationale: "Textbook! The warmth promotes vasodilation and blood flow, saving the tissue from necrosis. The arm is saved. Stability!" },
+                    { text: "Apply an ice pack to the site.", outcome: "death", rationale: "Ice causes MORE vasoconstriction! You completely starved the tissue of blood. The arm became gangrenous, causing fatal sepsis." },
+                    { text: "Start a new IV below the infiltrated site.", outcome: "rehab", rationale: "Starting an IV distal to the injury pushes drugs into damaged vessels. The arm requires extensive skin grafting and muscle removal. Rehab." }
+                ]
+            },
+            {
+                text: "Flush the IV rapidly with 10mL of Normal Saline.",
+                instructorComment: "You just pressure-washed a highly toxic, tissue-destroying drug deeper into their arm muscles.",
+                followUps: [
+                    { text: "Push another 10mL just to be sure.", outcome: "death", rationale: "The massive tissue necrosis caused compartment syndrome, systemic infection, and the patient died of sepsis." },
+                    { text: "Massage the area vigorously.", outcome: "death", rationale: "You spread the necrotic drug into the entire forearm. The arm had to be amputated, and the patient died in surgery." },
+                    { text: "Realize you pushed it into the tissue and inject Phentolamine.", outcome: "rehab", rationale: "You injected the antidote, but because you flushed the poison deeper first, they still need extensive skin grafts." }
+                ]
+            },
+            {
+                text: "Apply an ice pack to reduce the swelling.",
+                instructorComment: "Levophed causes severe vasoconstriction. Ice causes severe vasoconstriction. You just turned their arm into a frozen, bloodless block of dead meat.",
+                followUps: [
+                    { text: "Leave the ice pack on for an hour.", outcome: "rehab", rationale: "The tissue died entirely. The patient survived but had their arm amputated at the elbow. Epic malpractice." },
+                    { text: "Restart the Levophed in the same IV.", outcome: "death", rationale: "You pumped more poison into a dead arm. The necrotic tissue released toxins, causing fatal cardiac arrest." },
+                    { text: "Take the ice off and apply a warm compress.", outcome: "stability", rationale: "You caught your mistake before total tissue death occurred. The warmth restores blood flow. You barely passed." }
+                ]
+            },
+            {
+                text: "Document that the IV is infiltrated and elevate the arm.",
+                instructorComment: "You documented a major chemical burn and did absolutely nothing to treat the antidote. The tissue is actively dying.",
+                followUps: [
+                    { text: "Check on it at the end of the shift.", outcome: "death", rationale: "The arm turned black, gangrene set in, and the patient died of septic shock." },
+                    { text: "Give them Tylenol for the pain.", outcome: "death", rationale: "Tylenol doesn't cure necrosis. The patient loses the arm and dies of complications." },
+                    { text: "Call the pharmacist to ask what to do.", outcome: "rehab", rationale: "The pharmacist screams 'PHENTOLAMINE!' You inject it, but the delay cost them 30% of their forearm muscle." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "resp_tension",
+        scenario: "Your patient is on a ventilator for ARDS. Suddenly, the high-pressure alarm sounds. Their O2 drops to 70%, BP drops to 60/30, and you notice their trachea is visibly deviated to the left.",
+        options: [
+            {
+                text: "Identify a Tension Pneumothorax and request immediate needle decompression.",
+                instructorComment: "The positive pressure from the vent popped a lung! Air is trapped, crushing the heart (low BP) and pushing the trachea. You need to pop the balloon.",
+                followUps: [
+                    { text: "Prep the right chest for the needle and prepare a chest tube.", outcome: "stability", rationale: "Flawless! The doctor inserts the needle, air hisses out, the trachea shifts back, and BP normalizes. You saved their life! Stability!" },
+                    { text: "Decompress the LEFT side of the chest.", outcome: "death", rationale: "The trachea deviates AWAY from the popped lung. The right lung was popped, and you just stabbed a needle into their good left lung! Double pneumo. Dead." },
+                    { text: "Wait for a STAT Chest X-Ray.", outcome: "death", rationale: "Tension pneumothorax is a clinical diagnosis. While you waited for the x-ray machine, their heart was crushed and they died." }
+                ]
+            },
+            {
+                text: "Increase the PEEP on the ventilator to force oxygen in.",
+                instructorComment: "The high PEEP is exactly what popped the lung in the first place! You are pumping more air into the chest cavity, crushing the heart further.",
+                followUps: [
+                    { text: "Turn the PEEP to maximum.", outcome: "death", rationale: "The heart was completely crushed by the pressure in the chest. Instant fatal cardiovascular collapse." },
+                    { text: "Give a 100% Oxygen breath.", outcome: "death", rationale: "Oxygen doesn't work if the heart can't pump it. Dead." },
+                    { text: "Take them off the vent and bag them manually.", outcome: "rehab", rationale: "Bagging gives you a feel for the resistance, but you still haven't fixed the trapped air. They require CPR until the doctor arrives." }
+                ]
+            },
+            {
+                text: "Administer a rapid IV fluid bolus for the 60/30 blood pressure.",
+                instructorComment: "The BP is low because the heart is physically crushed by trapped air (Obstructive Shock). Fluids cannot fix a mechanical obstruction.",
+                followUps: [
+                    { text: "Push IV Epinephrine.", outcome: "death", rationale: "You whipped a heart that physically cannot beat. Fatal ischemia." },
+                    { text: "Hang a second bag of fluids.", outcome: "death", rationale: "They coded from obstructive shock while you watched the IV drip." },
+                    { text: "Realize the trachea is deviated and call the surgeon.", outcome: "stability", rationale: "You stopped treating the symptom and found the root cause. Needle decompression saves them." }
+                ]
+            },
+            {
+                text: "Deflate the endotracheal tube cuff and reposition the tube.",
+                instructorComment: "You think the tube slipped? That doesn't explain the crushing hypotension or the tracheal deviation. You are wasting time.",
+                followUps: [
+                    { text: "Pull the tube out completely.", outcome: "death", rationale: "You removed their airway while they had a tension pneumothorax. A spectacular double-kill." },
+                    { text: "Push the tube deeper.", outcome: "death", rationale: "You pushed the tube into the right mainstem bronchus, completely blocking off the good lung. Dead." },
+                    { text: "Notice the absent breath sounds on the right and call a code.", outcome: "rehab", rationale: "You finally did a lung assessment. The code team decompresses the chest, but the hypoxic injury is severe." }
+                ]
+            }
+        ]
     }
 ];
 
